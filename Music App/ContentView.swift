@@ -14,7 +14,7 @@ struct ContentView: View {
             Image(systemName: "music.note")
                 .imageScale(.large)
                 .foregroundColor(.accentColor)
-            Text("Music App!")
+            Text("This is a change by J")
                 .font(.largeTitle)
             Spacer()
         }
