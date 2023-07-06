@@ -19,7 +19,12 @@ struct LoginView: View {
     @State var createAccount: Bool = false
     @State var showError: Bool = false
     @State var errorMessage: String = ""
-    
+    @State var isLoading: Bool = false
+    //MARK: User Defaults
+    @AppStorage("log_status") var logStatus: Bool = false
+    @AppStorage("user_profile_url") var profileURL: URL?
+    @AppStorage("user_name") var userNameStored: String = ""
+    @AppStorage("user_UID") var userUID: String = ""
     
     var body: some View {
         VStack(spacing: 10){
@@ -72,6 +77,9 @@ struct LoginView: View {
         }
         .vAlign(.top)
         .padding(15)
+        .overlay(content: {
+            LoadingView(show: $isLoading)
+        })
         
         //register view via Sheets
         .fullScreenCover(isPresented: $createAccount) {
@@ -82,15 +90,32 @@ struct LoginView: View {
     }
     
     func loginUser(){
+        isLoading = true
+        closeKeyboard()
         Task{
             do{
                 try await Auth.auth().signIn(withEmail: emailID, password: password)
                 print("User Found")
+                try await fetchUser()
             }catch{
                 await setError(error)
             }
         }
         
+    }
+    
+    //MARK: If user if found then fetching user data from firestore
+    func fetchUser() async throws{
+        guard let userID = Auth.auth().currentUser?.uid else {return}
+        let user = try await Firestore.firestore().collection("Users").document(userID).getDocument(as: User.self)
+        // MARK: UI Updating Must be Run On Main Thread
+        await MainActor.run(body: {
+            //Setting UserDefaults data and changing app's auth status
+            userUID = userID
+            userNameStored = user.username
+            profileURL = user.userProfileURL
+            logStatus = true
+        })
     }
     
     func resetPassword(){
@@ -111,6 +136,7 @@ struct LoginView: View {
         await MainActor.run(body: {
             errorMessage = error.localizedDescription
             showError.toggle()
+            isLoading = false
         })
     }
 }
@@ -126,6 +152,12 @@ struct RegisterView: View {
     @State var photoItem: PhotosPickerItem?
     @State var showError: Bool = false
     @State var errorMessage: String = ""
+    @State var isLoading: Bool = false
+    // MARK : UserDefaults
+    @AppStorage("log_status") var logStatus: Bool = false
+    @AppStorage("user_profile_url") var profileURL: URL?
+    @AppStorage("user_name") var userNameStored: String = ""
+    @AppStorage("user_UID") var userUID: String = ""
     var body: some View{
         VStack(spacing: 10){
             Text("Lets Register \nAccount")
@@ -158,6 +190,9 @@ struct RegisterView: View {
         }
         .vAlign(.top)
         .padding(15)
+        .overlay(content: {
+            LoadingView(show: $isLoading)
+        })
         .photosPicker(isPresented: $showImagePicker, selection: $photoItem)
         .onChange(of: photoItem) { newValue in
             // MARK: Extracting UIImage From PhotoItem
@@ -237,6 +272,8 @@ struct RegisterView: View {
     }
     
     func registerUser(){
+        isLoading = true
+        closeKeyboard()
         Task{
             do{
                 //Creating Firebase Account
@@ -257,6 +294,10 @@ struct RegisterView: View {
                     if error == nil{
                         //MARK: Print Saved Successfully
                         print("Saved Successfully")
+                        userNameStored = userName
+                        self.userUID = userUID
+                        profileURL = downloadURL
+                        logStatus = true
                     }
                 })
                 
@@ -273,6 +314,7 @@ struct RegisterView: View {
         await MainActor.run(body: {
             errorMessage = error.localizedDescription
             showError.toggle()
+            isLoading = false
         })
     }
     
@@ -286,6 +328,11 @@ struct LoginView_Previews: PreviewProvider {
 
 
 extension View{
+    //Closing all active keyboards
+    func closeKeyboard(){
+        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+    }
+    
     // MARK: Disabling with Opacity
     func disableWithOpacity(_ condition: Bool) -> some View{
         self
