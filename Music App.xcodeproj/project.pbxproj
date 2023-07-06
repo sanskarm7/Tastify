@@ -11,6 +11,9 @@
 		75A13D432A54BE1900387E08 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A13D422A54BE1900387E08 /* ContentView.swift */; };
 		75A13D452A54BE1A00387E08 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 75A13D442A54BE1A00387E08 /* Assets.xcassets */; };
 		75A13D482A54BE1A00387E08 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 75A13D472A54BE1A00387E08 /* Preview Assets.xcassets */; };
+		75A13D512A5610B500387E08 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 75A13D502A5610B500387E08 /* GoogleService-Info.plist */; };
+		75A13D542A561C3700387E08 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 75A13D532A561C3700387E08 /* FirebaseAuth */; };
+		75A13D582A561D0100387E08 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A13D572A561D0100387E08 /* LoginView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +22,8 @@
 		75A13D422A54BE1900387E08 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		75A13D442A54BE1A00387E08 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		75A13D472A54BE1A00387E08 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		75A13D502A5610B500387E08 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		75A13D572A561D0100387E08 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -26,6 +31,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				75A13D542A561C3700387E08 /* FirebaseAuth in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -51,7 +57,10 @@
 		75A13D3F2A54BE1900387E08 /* Music App */ = {
 			isa = PBXGroup;
 			children = (
+				75A13D562A561CB900387E08 /* Model */,
+				75A13D552A561CA900387E08 /* View */,
 				75A13D402A54BE1900387E08 /* Music_AppApp.swift */,
+				75A13D502A5610B500387E08 /* GoogleService-Info.plist */,
 				75A13D422A54BE1900387E08 /* ContentView.swift */,
 				75A13D442A54BE1A00387E08 /* Assets.xcassets */,
 				75A13D462A54BE1A00387E08 /* Preview Content */,
@@ -65,6 +74,21 @@
 				75A13D472A54BE1A00387E08 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		75A13D552A561CA900387E08 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				75A13D572A561D0100387E08 /* LoginView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		75A13D562A561CB900387E08 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -83,6 +107,9 @@
 			dependencies = (
 			);
 			name = "Music App";
+			packageProductDependencies = (
+				75A13D532A561C3700387E08 /* FirebaseAuth */,
+			);
 			productName = "Music App";
 			productReference = 75A13D3D2A54BE1900387E08 /* Music App.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +138,9 @@
 				Base,
 			);
 			mainGroup = 75A13D342A54BE1900387E08;
+			packageReferences = (
+				75A13D522A561C3700387E08 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = 75A13D3E2A54BE1900387E08 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -127,6 +157,7 @@
 			files = (
 				75A13D482A54BE1A00387E08 /* Preview Assets.xcassets in Resources */,
 				75A13D452A54BE1A00387E08 /* Assets.xcassets in Resources */,
+				75A13D512A5610B500387E08 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,6 +168,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				75A13D582A561D0100387E08 /* LoginView.swift in Sources */,
 				75A13D432A54BE1900387E08 /* ContentView.swift in Sources */,
 				75A13D412A54BE1900387E08 /* Music_AppApp.swift in Sources */,
 			);
@@ -264,11 +296,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Music App/Preview Content\"";
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Please allow access to select a profile picture";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -281,6 +316,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sanskar.Music-App";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -292,11 +328,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Music App/Preview Content\"";
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Please allow access to select a profile picture";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -309,6 +348,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sanskar.Music-App";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -337,6 +377,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		75A13D522A561C3700387E08 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		75A13D532A561C3700387E08 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 75A13D522A561C3700387E08 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 75A13D352A54BE1900387E08 /* Project object */;
 }

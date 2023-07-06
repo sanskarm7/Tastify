@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>747901262977-63l8of1mhdf3r7vt52dm1ts5pvpf5ajr.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.747901262977-63l8of1mhdf3r7vt52dm1ts5pvpf5ajr</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDaRLCoy2U08ulmkY-3FT0yPGkfInwsFs4</string>
+	<key>GCM_SENDER_ID</key>
+	<string>747901262977</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.sanskar.Music-App</string>
+	<key>PROJECT_ID</key>
+	<string>musicapp-7f987</string>
+	<key>STORAGE_BUCKET</key>
+	<string>musicapp-7f987.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:747901262977:ios:036a129c2430bed4990180</string>
+</dict>
+</plist>

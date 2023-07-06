@@ -6,19 +6,15 @@
 //
 
 import SwiftUI
+import PhotosUI
 
 struct ContentView: View {
-    var body: some View {
-        VStack {
-            Spacer()
-            Image(systemName: "music.note")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Music App!")
-                .font(.largeTitle)
-            Spacer()
-        }
+    var body: some View{
+        LoginView()
     }
+    
+    
+    
 }
 
 struct ContentView_Previews: PreviewProvider {
