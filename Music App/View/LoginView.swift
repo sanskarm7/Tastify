@@ -8,6 +8,8 @@
 import SwiftUI
 import PhotosUI
 import Firebase
+import FirebaseFirestore
+import FirebaseStorage
 
 struct LoginView: View {
     @State var emailID: String = "" //use SAME email for spotify account
@@ -172,6 +174,7 @@ struct RegisterView: View {
             }
         }
         // MARK: Displaying Alert
+        .alert(errorMessage, isPresented: $showError, actions:{})
         
     }
     
@@ -227,6 +230,7 @@ struct RegisterView: View {
                     .hAlign(.center)
                     .fillView(.black)
             }
+            .disableWithOpacity(userName == "" || userBio == "" || emailID == "" || password == "" || userProfilePicData == nil)
             .padding(.top,10)
             
         }
@@ -235,8 +239,29 @@ struct RegisterView: View {
     func registerUser(){
         Task{
             do{
+                //Creating Firebase Account
+                try await Auth.auth().createUser(withEmail: emailID, password: password)
+                //Uploading Profile Photo Into Firebase Storage
+                guard let userUID = Auth.auth().currentUser?.uid else{return}
+                guard let imageData = userProfilePicData else {return}
+                let storageRef = Storage.storage().reference().child("Profile_Images").child(userUID)
+                let _ = try await storageRef.putDataAsync(imageData)
+                //Downloading photo URL
+                let downloadURL = try await storageRef.downloadURL()
+                //Creating a user firestore object
+                let user = User(username: userName, userBio: userBio, userBioLink: bioLink, userUID: userUID, userEmail: emailID, userProfileURL: downloadURL)
+                // Saving User Doc into Firestore database
+                
+                let _ = try Firestore.firestore().collection("Users").document(userUID).setData(from: user, completion:{
+                    error in
+                    if error == nil{
+                        //MARK: Print Saved Successfully
+                        print("Saved Successfully")
+                    }
+                })
                 
             }catch{
+                //MARK: Deleting Created Account In Case of Failure
                 await setError(error)
             }
         }
@@ -261,6 +286,12 @@ struct LoginView_Previews: PreviewProvider {
 
 
 extension View{
+    // MARK: Disabling with Opacity
+    func disableWithOpacity(_ condition: Bool) -> some View{
+        self
+            .disabled(condition)
+            .opacity(condition ? 0.6 : 1)
+    }
     func hAlign(_ alignment: Alignment)->some View{
         self
             .frame(maxWidth: .infinity,alignment: alignment)
