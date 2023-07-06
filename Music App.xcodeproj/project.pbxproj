@@ -19,6 +19,9 @@
 		75A13D5F2A566A9200387E08 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 75A13D5E2A566A9200387E08 /* FirebaseStorage */; };
 		75A13D612A566DE800387E08 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A13D602A566DE800387E08 /* User.swift */; };
 		75A13D632A573C5200387E08 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A13D622A573C5200387E08 /* LoadingView.swift */; };
+		A8B818332A576B4F0003ECCF /* SpotifyAPI in Frameworks */ = {isa = PBXBuildFile; productRef = A8B818322A576B4F0003ECCF /* SpotifyAPI */; };
+		A8B818352A5775DC0003ECCF /* SpotifyAuthentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B818342A5775DC0003ECCF /* SpotifyAuthentication.swift */; };
+		A8B818372A577C590003ECCF /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B818362A577C590003ECCF /* ProfileView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +34,9 @@
 		75A13D572A561D0100387E08 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		75A13D602A566DE800387E08 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		75A13D622A573C5200387E08 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		A8B818302A5764250003ECCF /* Music-App-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Music-App-Info.plist"; sourceTree = SOURCE_ROOT; };
+		A8B818342A5775DC0003ECCF /* SpotifyAuthentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyAuthentication.swift; sourceTree = "<group>"; };
+		A8B818362A577C590003ECCF /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,6 +46,7 @@
 			files = (
 				75A13D542A561C3700387E08 /* FirebaseAuth in Frameworks */,
 				75A13D5F2A566A9200387E08 /* FirebaseStorage in Frameworks */,
+				A8B818332A576B4F0003ECCF /* SpotifyAPI in Frameworks */,
 				75A13D5B2A566A9200387E08 /* FirebaseFirestore in Frameworks */,
 				75A13D5D2A566A9200387E08 /* FirebaseFirestoreSwift in Frameworks */,
 			);
@@ -68,6 +75,7 @@
 		75A13D3F2A54BE1900387E08 /* Music App */ = {
 			isa = PBXGroup;
 			children = (
+				A8B818302A5764250003ECCF /* Music-App-Info.plist */,
 				75A13D562A561CB900387E08 /* Model */,
 				75A13D552A561CA900387E08 /* View */,
 				75A13D402A54BE1900387E08 /* Music_AppApp.swift */,
@@ -92,6 +100,7 @@
 			children = (
 				75A13D572A561D0100387E08 /* LoginView.swift */,
 				75A13D622A573C5200387E08 /* LoadingView.swift */,
+				A8B818362A577C590003ECCF /* ProfileView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -100,6 +109,7 @@
 			isa = PBXGroup;
 			children = (
 				75A13D602A566DE800387E08 /* User.swift */,
+				A8B818342A5775DC0003ECCF /* SpotifyAuthentication.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -132,6 +142,7 @@
 				75A13D5A2A566A9200387E08 /* FirebaseFirestore */,
 				75A13D5C2A566A9200387E08 /* FirebaseFirestoreSwift */,
 				75A13D5E2A566A9200387E08 /* FirebaseStorage */,
+				A8B818322A576B4F0003ECCF /* SpotifyAPI */,
 			);
 			productName = "Music App";
 			productReference = 75A13D3D2A54BE1900387E08 /* Music App.app */;
@@ -163,6 +174,7 @@
 			mainGroup = 75A13D342A54BE1900387E08;
 			packageReferences = (
 				75A13D522A561C3700387E08 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				A8B818312A576B4F0003ECCF /* XCRemoteSwiftPackageReference "SpotifyAPI" */,
 			);
 			productRefGroup = 75A13D3E2A54BE1900387E08 /* Products */;
 			projectDirPath = "";
@@ -193,8 +205,10 @@
 			files = (
 				75A13D612A566DE800387E08 /* User.swift in Sources */,
 				75A13D582A561D0100387E08 /* LoginView.swift in Sources */,
+				A8B818352A5775DC0003ECCF /* SpotifyAuthentication.swift in Sources */,
 				75A13D432A54BE1900387E08 /* ContentView.swift in Sources */,
 				75A13D632A573C5200387E08 /* LoadingView.swift in Sources */,
+				A8B818372A577C590003ECCF /* ProfileView.swift in Sources */,
 				75A13D412A54BE1900387E08 /* Music_AppApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -328,6 +342,7 @@
 				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Music-App-Info.plist";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Please allow access to select a profile picture";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -360,6 +375,7 @@
 				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Music-App-Info.plist";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Please allow access to select a profile picture";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -412,6 +428,14 @@
 				minimumVersion = 10.0.0;
 			};
 		};
+		A8B818312A576B4F0003ECCF /* XCRemoteSwiftPackageReference "SpotifyAPI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Peter-Schorn/SpotifyAPI";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -434,6 +458,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 75A13D522A561C3700387E08 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseStorage;
+		};
+		A8B818322A576B4F0003ECCF /* SpotifyAPI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A8B818312A576B4F0003ECCF /* XCRemoteSwiftPackageReference "SpotifyAPI" */;
+			productName = SpotifyAPI;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

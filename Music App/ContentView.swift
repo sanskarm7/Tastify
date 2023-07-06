@@ -13,7 +13,11 @@ struct ContentView: View {
     var body: some View{
         //MARK: Redirecting User Based on Log Status
         if logStatus{
-            Text("Main View")
+            ProfileView()
+//            Text("Main View")
+            //Prompt User to authorize/connect Spotify Account
+            
+
         }else{
             LoginView()
         }
