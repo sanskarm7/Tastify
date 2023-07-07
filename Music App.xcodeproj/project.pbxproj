@@ -22,6 +22,7 @@
 		A8B818332A576B4F0003ECCF /* SpotifyAPI in Frameworks */ = {isa = PBXBuildFile; productRef = A8B818322A576B4F0003ECCF /* SpotifyAPI */; };
 		A8B818352A5775DC0003ECCF /* SpotifyAuthentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B818342A5775DC0003ECCF /* SpotifyAuthentication.swift */; };
 		A8B818372A577C590003ECCF /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B818362A577C590003ECCF /* ProfileView.swift */; };
+		A8EC1B032A58C46E00882E4A /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = A8EC1B022A58C46E00882E4A /* KeychainAccess */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 			files = (
 				75A13D542A561C3700387E08 /* FirebaseAuth in Frameworks */,
 				75A13D5F2A566A9200387E08 /* FirebaseStorage in Frameworks */,
+				A8EC1B032A58C46E00882E4A /* KeychainAccess in Frameworks */,
 				A8B818332A576B4F0003ECCF /* SpotifyAPI in Frameworks */,
 				75A13D5B2A566A9200387E08 /* FirebaseFirestore in Frameworks */,
 				75A13D5D2A566A9200387E08 /* FirebaseFirestoreSwift in Frameworks */,
@@ -143,6 +145,7 @@
 				75A13D5C2A566A9200387E08 /* FirebaseFirestoreSwift */,
 				75A13D5E2A566A9200387E08 /* FirebaseStorage */,
 				A8B818322A576B4F0003ECCF /* SpotifyAPI */,
+				A8EC1B022A58C46E00882E4A /* KeychainAccess */,
 			);
 			productName = "Music App";
 			productReference = 75A13D3D2A54BE1900387E08 /* Music App.app */;
@@ -175,6 +178,7 @@
 			packageReferences = (
 				75A13D522A561C3700387E08 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				A8B818312A576B4F0003ECCF /* XCRemoteSwiftPackageReference "SpotifyAPI" */,
+				A8EC1B012A58C46E00882E4A /* XCRemoteSwiftPackageReference "KeychainAccess" */,
 			);
 			productRefGroup = 75A13D3E2A54BE1900387E08 /* Products */;
 			projectDirPath = "";
@@ -436,6 +440,14 @@
 				minimumVersion = 2.0.0;
 			};
 		};
+		A8EC1B012A58C46E00882E4A /* XCRemoteSwiftPackageReference "KeychainAccess" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kishikawakatsumi/KeychainAccess";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -463,6 +475,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = A8B818312A576B4F0003ECCF /* XCRemoteSwiftPackageReference "SpotifyAPI" */;
 			productName = SpotifyAPI;
+		};
+		A8EC1B022A58C46E00882E4A /* KeychainAccess */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A8EC1B012A58C46E00882E4A /* XCRemoteSwiftPackageReference "KeychainAccess" */;
+			productName = KeychainAccess;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
