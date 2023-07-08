@@ -10,18 +10,17 @@ import Firebase
 
 @main
 struct Music_AppApp: App {
+    
+    @StateObject var spotify = Spotify()
+
+    
     init(){
         FirebaseApp.configure()
     }
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .onOpenURL { url in
-                    print(url.absoluteString)
-                }
-            
-            
-
+                .environmentObject(spotify)
         }
     }
 }

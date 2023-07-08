@@ -8,12 +8,25 @@
 import SwiftUI
 
 struct ProfileView: View {
+    
+    @EnvironmentObject var spotify: Spotify
+
     var body: some View {
         VStack{
-            Text("This is the Profile View")
+            
+            if spotify.isAuthorized == false{
+                Text("This is the Profile View\nPlease Authorize your Spotify Account")
+            }
+            else if spotify.isAuthorized == true{
+                Text("Your Spotify Account has been Linked!!! :)")
+            }
         }
         .onAppear{
-            UIApplication.shared.open(authorizationURL)
+            if spotify.isAuthorized == false{
+                spotify.authorize()
+            }
+            
+            
         }
         
     }
