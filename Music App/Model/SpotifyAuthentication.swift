@@ -73,12 +73,9 @@ final class Spotify: ObservableObject {
             ]
         )!
         
-        // You can open the URL however you like. For example, you could open
-        // it in a web view instead of the browser.
-        // See https://developer.apple.com/documentation/webkit/wkwebview
         UIApplication.shared.open(url)
         
-        isAuthorized = true
+//        isAuthorized = true
     }
 }
 
