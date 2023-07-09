@@ -15,9 +15,25 @@ struct ProfileView: View {
     @State private var cancellables: Set<AnyCancellable> = []
     
     var body: some View {
-        
+        //pink tape - spotify:album:2ua5bFkZLZl1lIgKWtYZIz
+//        spotify.spotifyAPI
         NavigationView {
             Text("This is the Profile View")
+                .onTapGesture {
+                    spotify.spotifyAPI.currentUserTopTracks(TimeRange.longTerm)
+                        .sink(
+                            receiveCompletion: { completion in
+                                print(completion)
+                            },
+                            receiveValue: { results in
+                                for item in results.items{
+                                    print(item.name)
+                                }
+                                            
+                            }
+                        )
+                        .store(in: &cancellables)
+                }
                 .navigationTitle("Navigation")
         }
         .onAppear{
@@ -39,6 +55,7 @@ struct ProfileView: View {
             .sink(receiveCompletion: { completion in
                 switch completion {
                 case .finished:
+//                    spotify.isAuthorized = true
                     print("successfully authorized")
                 case .failure(let error):
                     if let authError = error as? SpotifyAuthorizationError, authError.accessWasDenied {
