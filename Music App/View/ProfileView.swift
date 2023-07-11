@@ -7,20 +7,25 @@
 import Combine
 import SwiftUI
 import SpotifyWebAPI
-
+import CoreData
 
 struct ProfileView: View {
     
     @Environment (\.managedObjectContext) var managedObjContxt
     @EnvironmentObject var spotify: Spotify
     @State private var cancellables: Set<AnyCancellable> = []
+//    var user = FetchedResults<AppUser>.Element()
+//    @FetchRequest(sortDescriptors: []) var users: FetchedResults<AppUser>
+
     
     var body: some View {
-        //pink tape - spotify:album:2ua5bFkZLZl1lIgKWtYZIz
 //        spotify.spotifyAPI
         NavigationView {
             Text("This is the Profile View")
                 .onTapGesture {
+                    
+                    
+                    
                     spotify.spotifyAPI.currentUserTopTracks(TimeRange.longTerm)
                         .sink(
                             receiveCompletion: { completion in
@@ -37,11 +42,10 @@ struct ProfileView: View {
                 }
                 .navigationTitle("Navigation")
         }
-        .onAppear{
-            if DataController().status(context: managedObjContxt) == false{
+        .onAppear{            
+//            if DataController().status(user: user, context: managedObjContxt) == false{
                 spotify.authorize()
-                DataController().authorization(context: managedObjContxt)
-            }
+//            }
         }
 //        .onAppear{
 //            if spotify.isAuthorized == false{
@@ -63,6 +67,7 @@ struct ProfileView: View {
                 switch completion {
                 case .finished:
                   //  spotify.isAuthorized = true
+//                    DataController().modifyIsAuthorize(user: user, context: managedObjContxt)
                     print("successfully authorized")
                 case .failure(let error):
                     if let authError = error as? SpotifyAuthorizationError, authError.accessWasDenied {

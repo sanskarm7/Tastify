@@ -108,7 +108,6 @@
 			children = (
 				75A13D572A561D0100387E08 /* LoginView.swift */,
 				75A13D622A573C5200387E08 /* LoadingView.swift */,
-				759D88742A5CAFFC00C19F3E /* DataController.swift */,
 				A8B818362A577C590003ECCF /* ProfileView.swift */,
 			);
 			path = View;
@@ -121,6 +120,7 @@
 				75A13D602A566DE800387E08 /* User.swift */,
 				A8B818342A5775DC0003ECCF /* SpotifyTest.swift */,
 				A8F093422A59F4450046DAE4 /* SpotifyAuthentication.swift */,
+				759D88742A5CAFFC00C19F3E /* DataController.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";

@@ -30,9 +30,17 @@ class DataController: ObservableObject {
             }
         }
     
-    func status(context: NSManagedObjectContext) -> Bool{
+    func addData(context: NSManagedObjectContext){
         let user = AppUser(context: context)
         
+        user.id = UUID()
+        user.isAuthorized = false
+        print("Data has been ADDED to coredata")
+        save(context: context)
+    }
+    
+    func status(user: AppUser, context: NSManagedObjectContext) -> Bool{
+
         if(user.isAuthorized == false){
             print("isAuthorized is false")
             return false
@@ -41,8 +49,10 @@ class DataController: ObservableObject {
         return true
     }
     
-    func authorization(context: NSManagedObjectContext){
-        let user = AppUser(context: context)
+
+    
+    func modifyIsAuthorize(user: AppUser, context: NSManagedObjectContext){
+//        let user = AppUser(context: context)
         
         user.isAuthorized = true
         print("authorized to Core Data")
