@@ -7,8 +7,11 @@
 import Foundation
 import SpotifyWebAPI
 import UIKit
+import SwiftUI
 
 final class Spotify: ObservableObject {
+    
+    @Environment (\.managedObjectContext) var managedObjContxt
     
     //Makes the SpotifyAPI Object w ClinentID/Secret
     let spotifyAPI = SpotifyAPI(
@@ -35,7 +38,7 @@ final class Spotify: ObservableObject {
      `authorizationManagerDidDeauthorize()`, which is called every time
      `SpotifyAPI.authorizationManager.deauthorize()` is called.
      */
-    @Published var isAuthorized = false
+   
     
     /// If `true`, then the app is retrieving access and refresh tokens. Used by
     /// `LoginView` to present an activity indicator.
@@ -74,6 +77,7 @@ final class Spotify: ObservableObject {
         )!
         
         UIApplication.shared.open(url)
+        
         
 //        isAuthorized = true
     }

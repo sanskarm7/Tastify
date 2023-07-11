@@ -11,7 +11,10 @@ import Firebase
 @main
 struct Music_AppApp: App {
     
+   
+    
     @StateObject var spotify = Spotify()
+    @StateObject private var dataController = DataController()
 
     
     init(){
@@ -21,6 +24,7 @@ struct Music_AppApp: App {
         WindowGroup {
             ContentView()
                 .environmentObject(spotify)
+                .environment(\.managedObjectContext, dataController.container.viewContext)
         }
     }
 }

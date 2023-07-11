@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		759D88732A5CAFB600C19F3E /* MusicApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 759D88712A5CAFB600C19F3E /* MusicApp.xcdatamodeld */; };
+		759D88752A5CAFFC00C19F3E /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759D88742A5CAFFC00C19F3E /* DataController.swift */; };
 		75A13D412A54BE1900387E08 /* Music_AppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A13D402A54BE1900387E08 /* Music_AppApp.swift */; };
 		75A13D432A54BE1900387E08 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A13D422A54BE1900387E08 /* ContentView.swift */; };
 		75A13D452A54BE1A00387E08 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 75A13D442A54BE1A00387E08 /* Assets.xcassets */; };
@@ -27,6 +29,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		759D88722A5CAFB600C19F3E /* MusicApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MusicApp.xcdatamodel; sourceTree = "<group>"; };
+		759D88742A5CAFFC00C19F3E /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		75A13D3D2A54BE1900387E08 /* Music App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Music App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		75A13D402A54BE1900387E08 /* Music_AppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Music_AppApp.swift; sourceTree = "<group>"; };
 		75A13D422A54BE1900387E08 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -104,6 +108,7 @@
 			children = (
 				75A13D572A561D0100387E08 /* LoginView.swift */,
 				75A13D622A573C5200387E08 /* LoadingView.swift */,
+				759D88742A5CAFFC00C19F3E /* DataController.swift */,
 				A8B818362A577C590003ECCF /* ProfileView.swift */,
 			);
 			path = View;
@@ -112,6 +117,7 @@
 		75A13D562A561CB900387E08 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				759D88712A5CAFB600C19F3E /* MusicApp.xcdatamodeld */,
 				75A13D602A566DE800387E08 /* User.swift */,
 				A8B818342A5775DC0003ECCF /* SpotifyTest.swift */,
 				A8F093422A59F4450046DAE4 /* SpotifyAuthentication.swift */,
@@ -215,9 +221,11 @@
 				A8B818352A5775DC0003ECCF /* SpotifyTest.swift in Sources */,
 				75A13D432A54BE1900387E08 /* ContentView.swift in Sources */,
 				A8F093432A59F4450046DAE4 /* SpotifyAuthentication.swift in Sources */,
+				759D88752A5CAFFC00C19F3E /* DataController.swift in Sources */,
 				75A13D632A573C5200387E08 /* LoadingView.swift in Sources */,
 				A8B818372A577C590003ECCF /* ProfileView.swift in Sources */,
 				75A13D412A54BE1900387E08 /* Music_AppApp.swift in Sources */,
+				759D88732A5CAFB600C19F3E /* MusicApp.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -486,6 +494,19 @@
 			productName = KeychainAccess;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		759D88712A5CAFB600C19F3E /* MusicApp.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				759D88722A5CAFB600C19F3E /* MusicApp.xcdatamodel */,
+			);
+			currentVersion = 759D88722A5CAFB600C19F3E /* MusicApp.xcdatamodel */;
+			path = MusicApp.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 75A13D352A54BE1900387E08 /* Project object */;
 }

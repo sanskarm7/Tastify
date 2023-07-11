@@ -11,6 +11,7 @@ import SpotifyWebAPI
 
 struct ProfileView: View {
     
+    @Environment (\.managedObjectContext) var managedObjContxt
     @EnvironmentObject var spotify: Spotify
     @State private var cancellables: Set<AnyCancellable> = []
     
@@ -37,11 +38,17 @@ struct ProfileView: View {
                 .navigationTitle("Navigation")
         }
         .onAppear{
-            if spotify.isAuthorized == false{
+            if DataController().status(context: managedObjContxt) == false{
                 spotify.authorize()
+                DataController().authorization(context: managedObjContxt)
             }
-            
         }
+//        .onAppear{
+//            if spotify.isAuthorized == false{
+//                spotify.authorize()
+//            }
+//
+//        }
         .onOpenURL(perform: handleURL(_:))
   
         }
@@ -55,7 +62,7 @@ struct ProfileView: View {
             .sink(receiveCompletion: { completion in
                 switch completion {
                 case .finished:
-//                    spotify.isAuthorized = true
+                  //  spotify.isAuthorized = true
                     print("successfully authorized")
                 case .failure(let error):
                     if let authError = error as? SpotifyAuthorizationError, authError.accessWasDenied {

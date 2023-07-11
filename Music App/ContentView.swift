@@ -9,6 +9,8 @@ import SwiftUI
 import PhotosUI
 
 struct ContentView: View {
+    
+    @FetchRequest(sortDescriptors: []) var users: FetchedResults<AppUser>
     @AppStorage("log_status") var logStatus: Bool = false
     var body: some View{
         //MARK: Redirecting User Based on Log Status
