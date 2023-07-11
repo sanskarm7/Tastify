@@ -12,9 +12,9 @@ struct ContentView: View {
     
     @Environment (\.managedObjectContext) var managedObjContxt
 
-//    @FetchRequest(sortDescriptors: []) var users: FetchedResults<AppUser>
+//    @FetchRequest(sortDescriptors: []) var users: FetchedResults<MobileUser>
     @AppStorage("log_status") var logStatus: Bool = false
-    var user = FetchedResults<AppUser>.Element()
+    var user = FetchedResults<MobileUser>.Element()
 
     var body: some View{
         //MARK: Redirecting User Based on Log Status
@@ -22,9 +22,9 @@ struct ContentView: View {
             
 
             ProfileView()
-                .onAppear{
-                    DataController().addData(context: managedObjContxt)
-                }
+//                .onAppear{
+//                    DataController().addData(context: managedObjContxt)
+//                }
 //            Text("Main View")
             //Prompt User to authorize/connect Spotify Account
         }else{

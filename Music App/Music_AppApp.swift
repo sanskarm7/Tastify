@@ -23,8 +23,8 @@ struct Music_AppApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environmentObject(spotify)
                 .environment(\.managedObjectContext, dataController.container.viewContext)
+                .environmentObject(spotify)
         }
     }
 }
