@@ -43,19 +43,21 @@ class DataController: ObservableObject {
         user.id = UUID()
         user.isAuthorized = false
         user.date = Date()
-        user.url = URL(string: "") //create an empty url hopefully?
+        user.url = URL(string: "musicapp://home")! //create an empty url hopefully?
+        user.authState = ""
         print("Data has been ADDED to coredata")
         print(user.id ?? 0)
         print("Above is the User's UUID")
         save(context: context)
     }
     
-    func editUserData(user: MobileUser, context: NSManagedObjectContext, isAuthorized: Bool, date: Date, url: URL){
+    func editUserData(user: MobileUser, context: NSManagedObjectContext, isAuthorized: Bool, date: Date, url: URL, authState: String){
         
         
         user.isAuthorized = isAuthorized
         user.date = date
         user.url = url
+        user.authState = authState
         print("Data has been UPDATED to coredata")
 
         save(context: context)
@@ -64,11 +66,23 @@ class DataController: ObservableObject {
     func status(user: MobileUser, context: NSManagedObjectContext) -> Bool{
 
         if(user.isAuthorized == false){
-            print("isAuthorized is false")
+            
             return false
         }
-        print("isAuthorized is true")
         return true
+    }
+    
+    func getURL(user: MobileUser, context: NSManagedObjectContext) -> URL{
+//        guard let tempURL = user.url else{
+//            return
+//        }
+//        return tempURL
+        return user.url!
+    }
+    
+    func getAuthState(user: MobileUser, context: NSManagedObjectContext) -> String{
+
+        return user.authState!
     }
     
 

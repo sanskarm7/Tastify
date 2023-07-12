@@ -20,35 +20,11 @@ final class Spotify: ObservableObject {
         )
     )
     
-    /**
-     Whether or not the application has been authorized. If `true`, then you can
-     begin making requests to the Spotify web API using the `api` property of
-     this class, which contains an instance of `SpotifyAPI`.
 
-     When `false`, `LoginView` is presented, which prompts the user to login.
-     When this is set to `true`, `LoginView` is dismissed.
+    var authorizationState = String.randomURLSafe(length: 128)
 
-     This property provides a convenient way for the user interface to be
-     updated based on whether the user has logged in with their Spotify account
-     yet. For example, you could use this property disable UI elements that
-     require the user to be logged in.
-
-     This property is updated by `authorizationManagerDidChange()`, which is
-     called every time the authorization information changes, and
-     `authorizationManagerDidDeauthorize()`, which is called every time
-     `SpotifyAPI.authorizationManager.deauthorize()` is called.
-     */
-   
-    
-    /// If `true`, then the app is retrieving access and refresh tokens. Used by
-    /// `LoginView` to present an activity indicator.
     @Published var isRetrievingTokens = false
-    
-//    @Published var currentUser: SpotifyUser? = nil
-    
-    
-//    var cancellables: Set<AnyCancellable> = []
- 
+
     //Creates Authorization Link
     //Requests for all scopes needed for app featurews
     //Opens Authorization Link in a web browser
@@ -60,7 +36,7 @@ final class Spotify: ObservableObject {
             // This same value **MUST** be provided for the state parameter of
             // `authorizationManager.requestAccessAndRefreshTokens(redirectURIWithQuery:state:)`.
             // Otherwise, an error will be thrown.
-//            state: authorizationState,//???
+            state: authorizationState,
             scopes: [
                 .userReadCurrentlyPlaying,
                 .ugcImageUpload,
