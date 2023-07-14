@@ -19,10 +19,11 @@ struct Music_AppApp: App {
     
     init(){
         FirebaseApp.configure()
+        
     }
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            RootView()
                 .environment(\.managedObjectContext, dataController.container.viewContext)
                 .environmentObject(spotify)
         }

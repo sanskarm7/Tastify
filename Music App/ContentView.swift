@@ -21,7 +21,7 @@ struct ContentView: View {
         if logStatus{
             
 
-            ProfileView()
+            TestView()
 //                .onAppear{
 //                    DataController().addData(context: managedObjContxt)
 //                }
