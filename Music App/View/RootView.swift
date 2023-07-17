@@ -15,16 +15,29 @@ struct RootView: View {
     @EnvironmentObject var spotify: Spotify
     @State private var cancellables: Set<AnyCancellable> = []
     @State private var alert: Alert? = nil
-
+    @State private var selection = 2
+    
     @FetchRequest(sortDescriptors: [SortDescriptor(\.date, order: .forward)]) var users: FetchedResults<MobileUser>
     
     var body: some View {
-        NavigationView {
-            VStack{
-                TestView()
-            }
-            .navigationBarTitle("Taste")
-//            .navigationBarItems(trailing: logoutButton)
+        TabView(selection: $selection) {
+            TestView()
+                .tabItem {
+                    Label("Test", systemImage: "arrow.triangle.2.circlepath.circle")
+                }
+                .tag(1)
+            SearchView()
+                .tabItem {
+                    Label("Search", systemImage: "arrow.triangle.2.circlepath.circle")
+                }
+                .tag(2)
+            figma()
+                .tabItem {
+                    Label("Saved", systemImage: "arrow.triangle.2.circlepath.circle")
+                }
+                .tag(3)
+            
+            
         }
     }
 }
