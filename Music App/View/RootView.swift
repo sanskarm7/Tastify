@@ -31,14 +31,15 @@ struct RootView: View {
                     Label("Search", systemImage: "magnifyingglass")
                 }
                 .tag(2)
-            figma()
+            ProfileView()
                 .tabItem {
-                    Label("Saved", systemImage: "arrow.triangle.2.circlepath.circle")
+                    Label("Profile", systemImage: "arrow.triangle.2.circlepath.circle")
                 }
                 .tag(3)
             
             
         }
+    
     }
 }
 

@@ -1,17 +1,20 @@
 //
-//  SettingsView.swift
+//  figma.swift
 //  Music App
 //
-//  Created by Jay Sunkara on 7/17/23.
+//  Created by Jay Sunkara on 7/14/23.
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 import Firebase
 import FirebaseStorage
 import FirebaseFirestore
 
 
-struct SettingsView: View {
+
+
+struct ProfileView: View {
     @AppStorage("log_status") var logStatus: Bool = false
     @State private var myProfile: User?
     // MARK: Error Message
@@ -19,42 +22,42 @@ struct SettingsView: View {
     @State var showError: Bool = false
     @State var isLoading: Bool = false
     
+
     var body: some View {
         NavigationStack{
             ZStack{
                 Color(red: 0.03, green: 0, blue: 0.09).edgesIgnoringSafeArea(.all)
-                ScrollView(.vertical,showsIndicators: false){
-                    
-                    VStack() {
-                        
-                        Text("SettingsView")
-                        
-                        Button {
-                            logOutUser()
-                        } label: {
-                            Text("Logout")
+                    VStack(){
+
+                        if let myProfile{
+                            ReusableProfileContent(user: myProfile)
+                                .refreshable {
+                                //Refresh User Data
+                                self.myProfile = nil
+                                await fetchUserData()
+                            }
                         }
+                        else{
+                            ProgressView()
+                        }
+                    }
+                    .toolbar {
+                        ToolbarItem(placement: .navigationBarTrailing) {
+                            Menu{
+                                Button("Logout", action: logOutUser)
+                                
+                                Button("Delete Account", role: .destructive){
+                                    
+                                }
+                            } label: {
+                                Image("Settings")
+                                    .font(.headline)
+                                    .padding()
+                            }
                         
-                        
-                        Button("Delete Account", role: .destructive, action: deleteAccount)
-                        
-                        
+
                     }
                 }
-                .refreshable {
-                    //Refresh User Data
-                }
-            }
-        }
-        
-        .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-
-                Image(systemName: "info.circle")
-                    .foregroundColor(Color.purple)
-                    .font(.headline)
-                    .padding()
-
             }
         }
         .overlay{
@@ -63,8 +66,24 @@ struct SettingsView: View {
             .alert(errorMessage, isPresented: $showError){
                 
             }
+            .task{
+                //MARK: Initial Fetch
+                
+                if myProfile != nil{return}
+                await fetchUserData()
+            }
 
     }
+    //MARK: Fetching User Data
+    func fetchUserData()async{
+        guard let userUID = Auth.auth().currentUser?.uid else{ return}
+        guard let user = try? await Firestore.firestore().collection("Users").document(userUID).getDocument(as: User.self) else{return}
+        await MainActor.run(body: {
+            myProfile = user
+        })
+        
+    }
+    
     //MARK: Logging User Out
     func logOutUser(){
         try? Auth.auth().signOut()
@@ -101,10 +120,11 @@ struct SettingsView: View {
             showError.toggle()
         })
     }
+    
+    
 }
-
-struct SettingsView_Previews: PreviewProvider {
+struct figma_Previews: PreviewProvider {
     static var previews: some View {
-        SettingsView()
+        ProfileView()
     }
 }

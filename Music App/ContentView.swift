@@ -40,7 +40,7 @@ struct ContentView: View {
                         Label("Test", systemImage: "arrow.triangle.2.circlepath.circle")
                     }
                     .tag(1)
-                    figma()
+                    ProfileView()
                     .tabItem {
                         Label("Saved", systemImage: "arrow.triangle.2.circlepath.circle")
                     }
