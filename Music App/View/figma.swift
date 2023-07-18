@@ -35,7 +35,7 @@ struct figma: View {
                     ToolbarItem(placement: .navigationBarTrailing) {
 
                         NavigationLink(destination: SettingsView()) {
-                            Image("Settings")
+                            Image("gearshape")
                                 .font(.headline)
                         }
 

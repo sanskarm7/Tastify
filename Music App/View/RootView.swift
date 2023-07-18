@@ -28,7 +28,7 @@ struct RootView: View {
                 .tag(1)
             SearchView()
                 .tabItem {
-                    Label("Search", systemImage: "arrow.triangle.2.circlepath.circle")
+                    Label("Search", systemImage: "magnifyingglass")
                 }
                 .tag(2)
             figma()

@@ -14,8 +14,8 @@ struct TestView: View {
     @Environment (\.managedObjectContext) var managedObjContxt
     @EnvironmentObject var spotify: Spotify
     @State private var cancellables: Set<AnyCancellable> = []
-    @State private var alert: Alert? = nil
-//    @State private var alert: AlertItem? = nil          //Xcode cant find AlertItem???
+    
+    @State private var alert: AlertItem? = nil          //Xcode cant find AlertItem???
 
 
     //    var user = FetchedResults<MobileUser>.Element()
@@ -127,14 +127,14 @@ struct TestView: View {
         // your app.
         
         //Xcode cant find AlertItem???
-//        guard url.scheme == self.spotify.loginCallbackURL.scheme else {
-//            print("not handling URL: unexpected scheme: '\(url)'")
-//            self.alert = AlertItem(
-//                title: "Cannot Handle Redirect",
-//                message: "Unexpected URL"
-//            )
-//            return
-//        }
+        guard url.scheme == self.spotify.loginCallbackURL.scheme else {
+            print("not handling URL: unexpected scheme: '\(url)'")
+            self.alert = AlertItem(
+                title: "Cannot Handle Redirect",
+                message: "Unexpected URL"
+            )
+            return
+        }
         
         print("received redirect from Spotify: '\(url)'")
         
@@ -181,9 +181,9 @@ struct TestView: View {
                         "Couldn't Authorization With Your Account"
                     alertMessage = error.localizedDescription
                 }
-//                self.alert = AlertItem(
-//                    title: alertTitle, message: alertMessage
-//                )
+                self.alert = AlertItem(
+                    title: alertTitle, message: alertMessage
+                )
             }
         })
         .store(in: &cancellables)
