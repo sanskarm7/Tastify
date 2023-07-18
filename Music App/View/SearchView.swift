@@ -53,6 +53,7 @@ struct SearchView: View {
                 List {
                     ForEach(tracks, id: \.self) { track in
                         SongView(track: track)
+                            .listRowSeparator(.hidden)
                     }
                 }
                 .listStyle(.plain)

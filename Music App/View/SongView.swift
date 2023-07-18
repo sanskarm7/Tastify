@@ -18,7 +18,7 @@ struct SongView: View {
 
     @State private var alert: AlertItem? = nil
     
-    @State private var image = Image(systemName: "xmark.seal")
+    @State private var image = Image(systemName: "arrow.triangle.2.circlepath")
 
     
     //Pass in Track Here
@@ -35,49 +35,31 @@ struct SongView: View {
                     .frame(width: 40, height: 40)
                     
                 
-                VStack{
-                    Text(track.name)
+                VStack(alignment: .leading){
+                    Text(track.name.count >= 25 ? String(track.name.prefix(25) + "...") : track.name)
                         .font(
                             Font.custom("Inter", size: 18).weight(.semibold)
                         )
+                        
                     if let artistName = track.artists?.first?.name {
                         Text(artistName)
                             .font(
                                 Font.custom("Inter", size: 18).weight(.light)
                                 )
                     }
-                    
                 }
                 Spacer()
                 Image(systemName: "cursorarrow.click.2")
             }
             
-            
-//            HStack {
-//                Text(trackDisplayName())
-//                Spacer()
-//            }
-//            // Ensure the hit box extends across the entire width of the frame.
-//            // See https://bit.ly/2HqNk4S
-//            .contentShape(Rectangle())
         }
         .onAppear{
             loadImage()
         }
-        .buttonStyle(PlainButtonStyle())
+        .buttonStyle(.plain)
         .alert(item: $alert) { alert in
             Alert(title: alert.title, message: alert.message)
         }
-        
-    }
-    
-    /// The display name for the track. E.g., "Eclipse - Pink Floyd".
-    func trackDisplayName() -> String {
-        var displayName = track.name
-        if let artistName = track.artists?.first?.name {
-            displayName += " - \(artistName)"
-        }
-        return displayName
     }
     
     func playTrack() {
@@ -128,7 +110,6 @@ struct SongView: View {
             return
         }
 
-        // print("loading image for '\(playlist.name)'")
         
         // Note that a `Set<AnyCancellable>` is NOT being used so that each time
         // a request to load the image is made, the previous cancellable
