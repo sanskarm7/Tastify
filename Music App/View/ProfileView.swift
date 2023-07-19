@@ -12,8 +12,6 @@ import FirebaseStorage
 import FirebaseFirestore
 
 
-
-
 struct ProfileView: View {
     @AppStorage("log_status") var logStatus: Bool = false
     @State private var myProfile: User?
@@ -44,16 +42,10 @@ struct ProfileView: View {
                     }
                     .toolbar {
                         ToolbarItem(placement: .navigationBarTrailing) {
-                            Menu{
-                                Button("Logout", action: logOutUser)
-                                
-//                                Button("Delete Account", role: .destructive){
-//
-//                                }
-                            } label: {
-                                Image("Settings")
+                            
+                            NavigationLink(destination: SettingsView()) {
+                                Image(systemName: "gearshape")
                                     .font(.headline)
-                                    .padding()
                             }
                         
 
@@ -86,34 +78,7 @@ struct ProfileView: View {
         
     }
     
-    //MARK: Logging User Out
-    func logOutUser(){
-        try? Auth.auth().signOut()
-        logStatus = false
-        spotify.api.authorizationManager.deauthorize()
-    }
-    
-    //MARK: eleting user Entire Account
-//    func deleteAccount(){
-//        isLoading = true
-//        Task{
-//            do{
-//                guard let userUID = Auth.auth().currentUser?.uid else{return}
-//                // Step 1: First Deleting Profile Image From Storage
-//                let reference = Storage.storage().reference().child("Profile_Images").child(userUID)
-//                try await reference.delete()
-//                // Step 2: Deleting Firestore User Document
-//                try await Firestore.firestore().collection("Users").document(userUID).delete()
-//                // Final Step: Deleting Auth Acount and Setting Log Status to False
-//                try await Auth.auth().currentUser?.delete()
-//                logStatus = false
-//
-//            }catch{
-//                await setError(error)
-//            }
-//
-//        }
-//    }
+
     func setError(_ error: Error) async{
         //MARK: UI Must be run on Main Thread
         

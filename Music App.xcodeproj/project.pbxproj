@@ -25,6 +25,7 @@
 		75A13D5F2A566A9200387E08 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 75A13D5E2A566A9200387E08 /* FirebaseStorage */; };
 		75A13D612A566DE800387E08 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A13D602A566DE800387E08 /* User.swift */; };
 		75A13D632A573C5200387E08 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A13D622A573C5200387E08 /* LoadingView.swift */; };
+		A81A4D6D2A688637002A2A50 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81A4D6C2A688637002A2A50 /* HomeView.swift */; };
 		A83F190B2A66245F00415687 /* AlertItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83F190A2A66245F00415687 /* AlertItem.swift */; };
 		A8AA0DDD2A6216A100C9FCDE /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8AA0DDC2A6216A100C9FCDE /* ProfileView.swift */; };
 		A8B818332A576B4F0003ECCF /* SpotifyAPI in Frameworks */ = {isa = PBXBuildFile; productRef = A8B818322A576B4F0003ECCF /* SpotifyAPI */; };
@@ -52,6 +53,7 @@
 		75A13D572A561D0100387E08 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		75A13D602A566DE800387E08 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		75A13D622A573C5200387E08 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		A81A4D6C2A688637002A2A50 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		A83F190A2A66245F00415687 /* AlertItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertItem.swift; sourceTree = "<group>"; };
 		A8AA0DDC2A6216A100C9FCDE /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		A8B818302A5764250003ECCF /* Music-App-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Music-App-Info.plist"; sourceTree = SOURCE_ROOT; };
@@ -133,6 +135,7 @@
 				7567D6122A66028A002D93DF /* SearchView.swift */,
 				A8C339EF2A66178E0084FE05 /* SongView.swift */,
 				7567D6142A674CD7002D93DF /* ReusableProfileContent.swift */,
+				A81A4D6C2A688637002A2A50 /* HomeView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -262,6 +265,7 @@
 				A8C339F02A66178E0084FE05 /* SongView.swift in Sources */,
 				759D88732A5CAFB600C19F3E /* MusicApp.xcdatamodeld in Sources */,
 				7567D6112A65FE2D002D93DF /* SettingsView.swift in Sources */,
+				A81A4D6D2A688637002A2A50 /* HomeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -25,9 +25,9 @@ struct RootView: View {
         
         if logStatus{
                     TabView(selection: $selection) {
-                        ProfileView() //CHANGE TO HOMEVIEW
+                        HomeView() //CHANGE TO HOMEVIEW
                             .tabItem {
-                                Label("Test", systemImage: "arrow.triangle.2.circlepath.circle")
+                                Label("Home", systemImage: "arrow.triangle.2.circlepath.circle")
                             }
                             .tag(1)
                         SearchView()

@@ -25,45 +25,50 @@ struct SearchView: View {
     init() { }
     
     var body: some View {
-        VStack {
-            searchBar
-                .padding([.top, .horizontal])
-//            Text("Tap on a track to play it.")
-//                .font(.caption)
-//                .foregroundColor(.secondary)
-            Spacer()
-            if tracks.isEmpty {
-                if isSearching {
-                    HStack {
-                        ProgressView()
-                            .padding()
-                        Text("Searching")
+        ZStack{
+//            Color(red: 0.03, green: 0, blue: 0.09).edgesIgnoringSafeArea(.all)
+
+            VStack {
+                searchBar
+                    .padding([.top, .horizontal])
+    //            Text("Tap on a track to play it.")
+    //                .font(.caption)
+    //                .foregroundColor(.secondary)
+                Spacer()
+                if tracks.isEmpty {
+                    if isSearching {
+                        HStack {
+                            ProgressView()
+                                .padding()
+                            Text("Searching")
+                                .font(.title)
+                                .foregroundColor(.secondary)
+                        }
+                        
+                    }
+                    else {
+                        Text("No Results")
                             .font(.title)
                             .foregroundColor(.secondary)
                     }
-                    
                 }
                 else {
-                    Text("No Results")
-                        .font(.title)
-                        .foregroundColor(.secondary)
-                }
-            }
-            else {
-                List {
-                    ForEach(tracks, id: \.self) { track in
-                        SongView(track: track)
-                            .listRowSeparator(.hidden)
+                    List {
+                        ForEach(tracks, id: \.self) { track in
+                            SongView(track: track)
+                                .listRowSeparator(.hidden)
+                        }
                     }
+                    .listStyle(.plain)
                 }
-                .listStyle(.plain)
+                Spacer()
             }
-            Spacer()
+            .navigationTitle("Search For Tracks")
+            .alert(item: $alert) { alert in
+                Alert(title: alert.title, message: alert.message)
+            }
         }
-        .navigationTitle("Search For Tracks")
-        .alert(item: $alert) { alert in
-            Alert(title: alert.title, message: alert.message)
-        }
+
     }
     
     /// A search bar. Essentially a textfield with a magnifying glass and an "x"

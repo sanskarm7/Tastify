@@ -18,6 +18,10 @@ struct SettingsView: View {
     @State var errorMessage: String = ""
     @State var showError: Bool = false
     @State var isLoading: Bool = false
+    @State private var showingPopover = false
+    @EnvironmentObject var spotify: Spotify
+
+
     
     var body: some View {
         NavigationStack{
@@ -29,16 +33,18 @@ struct SettingsView: View {
                         
                         Text("SettingsView")
                         
+                        Button{
+                            //Edit Profile picture and name
+                        } label: {
+                            Text("Edit Profile")
+                        }
+                        
                         Button {
                             logOutUser()
                         } label: {
                             Text("Logout")
                         }
-                        
-                        
-                        Button("Delete Account", role: .destructive, action: deleteAccount)
-                        
-                        
+
                     }
                 }
                 .refreshable {
@@ -50,10 +56,15 @@ struct SettingsView: View {
         .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
 
-                Image(systemName: "info.circle")
-                    .foregroundColor(Color.purple)
-                    .font(.headline)
-                    .padding()
+                    Button {
+                        showingPopover = true
+                    } label: {
+                        Image(systemName: "info.circle")
+                    }
+                    .popover(isPresented: $showingPopover) {
+
+                        InfoView()
+                    }
 
             }
         }
@@ -65,13 +76,19 @@ struct SettingsView: View {
             }
 
     }
+    
+    
+    
+    
     //MARK: Logging User Out
     func logOutUser(){
         try? Auth.auth().signOut()
         logStatus = false
+        spotify.api.authorizationManager.deauthorize()
+
     }
     
-    //MARK: eleting user Entire Account
+    //MARK: deleting user Entire Account
     func deleteAccount(){
         isLoading = true
         Task{
@@ -100,6 +117,33 @@ struct SettingsView: View {
             errorMessage = error.localizedDescription
             showError.toggle()
         })
+    }
+}
+
+struct InfoView: View{
+    @Environment(\.dismiss) var dismiss
+
+    var body: some View{
+        NavigationView{
+            VStack{
+                Text("This is the help page")
+                    .font(.headline)
+                    .padding()
+                Text("Share Music posts with your friends by searching a song up and posting it!")
+                    .padding()
+            }
+
+        }
+        .toolbar {//not showing???
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button{
+                    dismiss()
+                } label: {
+                    Text("Done")
+                }
+                
+            }
+        }
     }
 }
 
