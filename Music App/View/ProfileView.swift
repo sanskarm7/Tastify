@@ -21,6 +21,7 @@ struct ProfileView: View {
     @State var errorMessage: String = ""
     @State var showError: Bool = false
     @State var isLoading: Bool = false
+    @EnvironmentObject var spotify: Spotify
     
 
     var body: some View {
@@ -46,9 +47,9 @@ struct ProfileView: View {
                             Menu{
                                 Button("Logout", action: logOutUser)
                                 
-                                Button("Delete Account", role: .destructive){
-                                    
-                                }
+//                                Button("Delete Account", role: .destructive){
+//
+//                                }
                             } label: {
                                 Image("Settings")
                                     .font(.headline)
@@ -76,6 +77,7 @@ struct ProfileView: View {
     }
     //MARK: Fetching User Data
     func fetchUserData()async{
+        
         guard let userUID = Auth.auth().currentUser?.uid else{ return}
         guard let user = try? await Firestore.firestore().collection("Users").document(userUID).getDocument(as: User.self) else{return}
         await MainActor.run(body: {
@@ -88,29 +90,30 @@ struct ProfileView: View {
     func logOutUser(){
         try? Auth.auth().signOut()
         logStatus = false
+        spotify.api.authorizationManager.deauthorize()
     }
     
     //MARK: eleting user Entire Account
-    func deleteAccount(){
-        isLoading = true
-        Task{
-            do{
-                guard let userUID = Auth.auth().currentUser?.uid else{return}
-                // Step 1: First Deleting Profile Image From Storage
-                let reference = Storage.storage().reference().child("Profile_Images").child(userUID)
-                try await reference.delete()
-                // Step 2: Deleting Firestore User Document
-                try await Firestore.firestore().collection("Users").document(userUID).delete()
-                // Final Step: Deleting Auth Acount and Setting Log Status to False
-                try await Auth.auth().currentUser?.delete()
-                logStatus = false
-                
-            }catch{
-                await setError(error)
-            }
-            
-        }
-    }
+//    func deleteAccount(){
+//        isLoading = true
+//        Task{
+//            do{
+//                guard let userUID = Auth.auth().currentUser?.uid else{return}
+//                // Step 1: First Deleting Profile Image From Storage
+//                let reference = Storage.storage().reference().child("Profile_Images").child(userUID)
+//                try await reference.delete()
+//                // Step 2: Deleting Firestore User Document
+//                try await Firestore.firestore().collection("Users").document(userUID).delete()
+//                // Final Step: Deleting Auth Acount and Setting Log Status to False
+//                try await Auth.auth().currentUser?.delete()
+//                logStatus = false
+//
+//            }catch{
+//                await setError(error)
+//            }
+//
+//        }
+//    }
     func setError(_ error: Error) async{
         //MARK: UI Must be run on Main Thread
         
