@@ -21,6 +21,10 @@ struct ProfileView: View {
     @State var isLoading: Bool = false
     @EnvironmentObject var spotify: Spotify
     
+    
+    
+    
+    
 
     var body: some View {
         NavigationStack{
@@ -43,8 +47,8 @@ struct ProfileView: View {
                     .toolbar {
                         ToolbarItem(placement: .navigationBarTrailing) {
                             
-                            NavigationLink(destination: SettingsView()) {
-                                Image(systemName: "gearshape")
+                            NavigationLink(destination: SettingsView(currUserName: myProfile?.username ?? "Username", currUserBio: myProfile?.userBio ?? "Bio", currUserEmail: myProfile?.userEmail ?? "email")) {
+                                Image("Settings")
                                     .font(.headline)
                             }
                         

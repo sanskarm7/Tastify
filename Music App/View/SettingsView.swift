@@ -12,6 +12,9 @@ import FirebaseFirestore
 
 
 struct SettingsView: View {
+    @State var currUserName: String
+    @State var currUserBio: String
+    @State var currUserEmail: String
     @AppStorage("log_status") var logStatus: Bool = false
     @State private var myProfile: User?
     // MARK: Error Message
@@ -33,11 +36,12 @@ struct SettingsView: View {
                         
                         Text("SettingsView")
                         
-                        Button{
-                            //Edit Profile picture and name
+                        NavigationLink {
+                            EditProfileView(currentUserName: currUserName, currentUserBio: currUserBio, currentUserEmail: currUserEmail)
                         } label: {
                             Text("Edit Profile")
                         }
+
                         
                         Button {
                             logOutUser()
@@ -149,6 +153,6 @@ struct InfoView: View{
 
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingsView()
+        SettingsView(currUserName: "", currUserBio: "", currUserEmail: "")
     }
 }
