@@ -68,7 +68,6 @@ struct EditProfileView: View {
         }
         // MARK: Displaying Alert
         .alert(errorMessage, isPresented: $showError, actions:{})
-        
     }
     
     @ViewBuilder

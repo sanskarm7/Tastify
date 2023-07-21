@@ -21,10 +21,6 @@ struct ProfileView: View {
     @State var isLoading: Bool = false
     @EnvironmentObject var spotify: Spotify
     
-    
-    
-    
-    
 
     var body: some View {
         NavigationStack{
@@ -51,8 +47,6 @@ struct ProfileView: View {
                                 Image("Settings")
                                     .font(.headline)
                             }
-                        
-
                     }
                 }
             }
