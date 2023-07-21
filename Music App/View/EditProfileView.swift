@@ -14,13 +14,13 @@ import FirebaseStorage
 struct EditProfileView: View {
     
     @State var currentUserName: String
-    @State var currentUserBio: String
+    @State var currentUserRealName: String
     @State var currentUserEmail: String
     @State var emailID: String = "" //use SAME email for spotify account
     @State var password: String = ""
     @State var userName: String = ""
-    @State var userBio: String = ""
-    @State var bioLink: String = ""
+    @State var userRealName: String = ""
+    //@State var bioLink: String = ""
     @State var userProfilePicData: Data?
     @Environment(\.dismiss) var dismiss
     @State var showImagePicker: Bool = false
@@ -98,8 +98,8 @@ struct EditProfileView: View {
                 .textContentType(.emailAddress)
                 .border(1, .gray.opacity(0.5))
                 
-            Text("User Bio: ")
-            TextField(currentUserBio, text: $userBio)
+            Text("Name: ")
+            TextField(currentUserRealName, text: $userRealName)
                 .textContentType(.emailAddress)
                 .border(1, .gray.opacity(0.5))
 
@@ -112,7 +112,7 @@ struct EditProfileView: View {
                     .fillView(.black)
             }
             
-            .disableWithOpacity(userName == "" && userBio == "" && userProfilePicData == nil)
+            .disableWithOpacity(userName == "" && userRealName == "" && userProfilePicData == nil)
             .padding(.top,10)
             
             
@@ -144,11 +144,11 @@ struct EditProfileView: View {
                 if userName == "" {
                     userName = currentUserName
                 }
-                if userBio == "" {
-                    userBio = currentUserBio
+                if userRealName == "" {
+                    userRealName = currentUserRealName
                 }
-                //Creating a user firestore object
-                let user = User(username: userName, userBio: userBio, userBioLink: bioLink, userUID: userUID, userEmail: currentUserEmail, userProfileURL: downloadURL)
+                //Creating a user firestore object - Remove [userBioLink: bioLink,]
+                let user = User(username: userName, userRealName: userRealName, userUID: userUID, userEmail: currentUserEmail, userProfileURL: downloadURL)
                 // Saving User Doc into Firestore database
                 
                 let _ = try Firestore.firestore().collection("Users").document(userUID).setData(from: user, completion:{
@@ -187,6 +187,6 @@ struct EditProfileView: View {
 
 struct EditProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        EditProfileView(currentUserName: "", currentUserBio: "", currentUserEmail: "")
+        EditProfileView(currentUserName: "", currentUserRealName: "", currentUserEmail: "")
     }
 }

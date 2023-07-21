@@ -47,7 +47,7 @@ struct ProfileView: View {
                     .toolbar {
                         ToolbarItem(placement: .navigationBarTrailing) {
                             
-                            NavigationLink(destination: SettingsView(currUserName: myProfile?.username ?? "Username", currUserBio: myProfile?.userBio ?? "Bio", currUserEmail: myProfile?.userEmail ?? "email")) {
+                            NavigationLink(destination: SettingsView(currUserName: myProfile?.username ?? "Username", currUserRealName: myProfile?.userRealName ?? "Name", currUserEmail: myProfile?.userEmail ?? "email")) {
                                 Image("Settings")
                                     .font(.headline)
                             }

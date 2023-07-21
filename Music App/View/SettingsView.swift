@@ -13,7 +13,7 @@ import FirebaseFirestore
 
 struct SettingsView: View {
     @State var currUserName: String
-    @State var currUserBio: String
+    @State var currUserRealName: String
     @State var currUserEmail: String
     @AppStorage("log_status") var logStatus: Bool = false
     @State private var myProfile: User?
@@ -37,7 +37,7 @@ struct SettingsView: View {
                         Text("SettingsView")
                         
                         NavigationLink {
-                            EditProfileView(currentUserName: currUserName, currentUserBio: currUserBio, currentUserEmail: currUserEmail)
+                            EditProfileView(currentUserName: currUserName, currentUserRealName: currUserRealName, currentUserEmail: currUserEmail)
                         } label: {
                             Text("Edit Profile")
                         }
@@ -153,6 +153,6 @@ struct InfoView: View{
 
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingsView(currUserName: "", currUserBio: "", currUserEmail: "")
+        SettingsView(currUserName: "", currUserRealName: "", currUserEmail: "")
     }
 }

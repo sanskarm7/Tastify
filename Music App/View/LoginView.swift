@@ -144,8 +144,8 @@ struct RegisterView: View {
     @State var emailID: String = "" //use SAME email for spotify account
     @State var password: String = ""
     @State var userName: String = ""
-    @State var userBio: String = ""
-    @State var bioLink: String = ""
+    @State var userRealName: String = ""
+    //@State var bioLink: String = ""
     @State var userProfilePicData: Data?
     @Environment(\.dismiss) var dismiss
     @State var showImagePicker: Bool = false
@@ -248,14 +248,13 @@ struct RegisterView: View {
                 .textContentType(.emailAddress)
                 .border(1, .gray.opacity(0.5))
             
-            TextField("About You", text: $userBio,axis: .vertical)
-                .frame(minHeight: 100, alignment: .top)
+            TextField("Name", text: $userRealName,axis: .vertical)
                 .textContentType(.emailAddress)
                 .border(1, .gray.opacity(0.5))
             
-            TextField("Bio Link (optional)", text: $bioLink)
-                .textContentType(.emailAddress)
-                .border(1, .gray.opacity(0.5))
+//            TextField("Bio Link (optional)", text: $bioLink)
+//                .textContentType(.emailAddress)
+//                .border(1, .gray.opacity(0.5))
 
             
             Button(action: registerUser){
@@ -265,7 +264,7 @@ struct RegisterView: View {
                     .hAlign(.center)
                     .fillView(.black)
             }
-            .disableWithOpacity(userName == "" || userBio == "" || emailID == "" || password == "" || userProfilePicData == nil)
+            .disableWithOpacity(userName == "" || userRealName == "" || emailID == "" || password == "" || userProfilePicData == nil)
             .padding(.top,10)
             
         }
@@ -285,8 +284,8 @@ struct RegisterView: View {
                 let _ = try await storageRef.putDataAsync(imageData)
                 //Downloading photo URL
                 let downloadURL = try await storageRef.downloadURL()
-                //Creating a user firestore object
-                let user = User(username: userName, userBio: userBio, userBioLink: bioLink, userUID: userUID, userEmail: emailID, userProfileURL: downloadURL)
+                //Creating a user firestore object - removed [userBioLink: bioLink,]
+                let user = User(username: userName, userRealName: userRealName, userUID: userUID, userEmail: emailID, userProfileURL: downloadURL)
                 // Saving User Doc into Firestore database
                 
                 let _ = try Firestore.firestore().collection("Users").document(userUID).setData(from: user, completion:{

@@ -29,19 +29,19 @@ struct ReusableProfileContent: View {
                     .foregroundColor(Color.white)
                     .fontWeight(.semibold)
                 
-                Text(user.userBio)
+                Text(user.userRealName)
                     .font(.caption)
                     .foregroundColor(.gray)
                     .lineLimit(3)
                 
                 //MARK: Displaying Bio Link, if given while signing up
                 
-                if let bioLink = URL(string: user.userBioLink){
-                    Link(user.userBioLink, destination: bioLink)
-                        .font(.callout)
-                        .tint(.blue)
-                        .lineLimit(1)
-                }
+//                if let bioLink = URL(string: user.userBioLink){
+//                    Link(user.userBioLink, destination: bioLink)
+//                        .font(.callout)
+//                        .tint(.blue)
+//                        .lineLimit(1)
+//                }
             }
         }
     }
