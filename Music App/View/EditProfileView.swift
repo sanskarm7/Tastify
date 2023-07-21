@@ -121,18 +121,32 @@ struct EditProfileView: View {
     }
     
     func updateProfile(){
+        print("update profile")
         //isLoading = true
         closeKeyboard()
         Task{
             do{
-                
+                print("task called")
                 //Uploading Profile Photo Into Firebase Storage
                 guard let userUID = Auth.auth().currentUser?.uid else{return}
-                guard let imageData = userProfilePicData else {return}
-                let storageRef = Storage.storage().reference().child("Profile_Images").child(userUID)
-                let _ = try await storageRef.putDataAsync(imageData)
-                //Downloading photo URL
-                let downloadURL = try await storageRef.downloadURL()
+                let downloadURL: URL
+                if userProfilePicData != nil {
+                    let storageRef = Storage.storage().reference().child("Profile_Images").child(userUID)
+                    let _ = try await storageRef.putDataAsync(userProfilePicData!)
+                    
+                    //Downloading photo URL
+                    downloadURL = try await storageRef.downloadURL()
+                }
+                else{
+                    downloadURL = profileURL!
+                }
+                
+                if userName == "" {
+                    userName = currentUserName
+                }
+                if userBio == "" {
+                    userBio = currentUserBio
+                }
                 //Creating a user firestore object
                 let user = User(username: userName, userBio: userBio, userBioLink: bioLink, userUID: userUID, userEmail: currentUserEmail, userProfileURL: downloadURL)
                 // Saving User Doc into Firestore database
