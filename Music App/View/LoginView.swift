@@ -248,7 +248,7 @@ struct RegisterView: View {
                 .textContentType(.emailAddress)
                 .border(1, .gray.opacity(0.5))
             
-            TextField("Name", text: $userRealName,axis: .vertical)
+            TextField("Name", text: $userRealName)
                 .textContentType(.emailAddress)
                 .border(1, .gray.opacity(0.5))
             

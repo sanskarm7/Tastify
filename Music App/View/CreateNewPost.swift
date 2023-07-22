@@ -10,14 +10,15 @@ import SDWebImageSwiftUI
 import Firebase
 import FirebaseStorage
 import FirebaseFirestore
+import FirebaseFirestoreSwift
 import SpotifyWebAPI
 
 
 struct CreateNewPost: View {
     
-    //    var onPost: (Post)->()
+//        var onPost: (Post)->()
     @State private var postText: String = ""
-    
+    @State var postTrackData: Data?
     @State private var myProfile: User?
     @Environment(\.dismiss) private var dismiss
     @State private var isLoading: Bool = false
@@ -25,7 +26,7 @@ struct CreateNewPost: View {
     @State private var showError: Bool = false
     
     //pass in track
-    //    let track: Track
+        let track: Track
     
     
     
@@ -62,98 +63,11 @@ struct CreateNewPost: View {
                     .ignoresSafeArea()
             }
             
-            ZStack{
-                Rectangle()
-                    .foregroundColor(.clear)
-                    .frame(width: 316, height: 525)
-                
-                    .background(Color(red: 0.91, green: 0.38, blue: 0.66))
-                    .cornerRadius(50)
-                VStack{
-                    
-                    HStack(alignment: .center){
-                        //                    WebImage(url: myProfile?.userProfileURL).placeholder{
-                        //MARK: Placeholder Image
-                        Image("null_pfp")
-                            .resizable()
-                            .frame(width: 50, height: 50)
-                        //                    }
-                        //                    .resizable()
-                        //                    .aspectRatio(contentMode: .fill)
-                        //                    .frame(width: 100, height: 100)
-                            .clipShape(Circle())
-                        
-                        Text("UserName")
-                        //                    Text(myProfile?.username ?? "UserName null")
-                            .font(
-                                Font.custom("Inter", size: 20
-                                           ).weight(.semibold)
-                            )
-                        
-                    }
-                    .frame(width: 175, height: 50)
-//                    .frame(alignment: .bottomLeading)
-                    .hAlign(.leading)
-                    
+            Text("Posting " + track.name)
+            Text("By " + (track.artists?.first?.name ?? "Error getting artist"))
+            Text("Length: " + String(track.durationMS ?? 0))
+            
 
-                    VStack{
-                        Image("null_pfp")
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .frame(width: 214, height: 217)
-                            .clipped()
-                            .shadow(color: .black.opacity(0.5), radius: 15, x: 0, y: 0)
-//                            .padding(.top)
-                            .padding(.bottom)
-                        
-                        Text("Pluto to Mars")
-                            .font(
-                            Font.custom("Inter", size: 25)
-                                .weight(.bold)
-                            )
-                        
-                        Text("Lil Uzi Vert")
-                            .padding(.bottom)
-                            .font(
-                            Font.custom("Inter", size: 20)
-                                .weight(.light)
-                            )
-                        
-                        Text("AnimBars")
-                            .font(
-                            Font.custom("Inter", size: 25)
-                                .weight(.light)
-                            )
-                        
-                    }
-                    .hAlign(.center)
-                    
-                    HStack{
-                        Spacer()
-                        VStack{
-                            Button{
-                                //Mute Aduio
-                            } label: {
-                                //if mute variable is false
-                                Image(systemName: "speaker.slash")
-                                    .font(.headline)
-                                    .foregroundColor(Color.white)
-                                
-                                //if mute var is true
-        //                        Image(systemName: "speaker.slash.fill")
-                            }
-                        }
-                        .padding(.trailing)
-                    }
-
-                }
-                
-            }
-            .frame(width: 316, height: 525)
-            
-            
-            
-            
         }
         .vAlign(.top)
         .task{
@@ -161,7 +75,10 @@ struct CreateNewPost: View {
             
             if myProfile != nil{return}
             await fetchUserData()
-            
+        }
+        .alert(errorMessage, isPresented: $showError,actions: {})
+        .overlay{
+            LoadingView(show: $isLoading)
         }
         
     }
@@ -176,6 +93,50 @@ struct CreateNewPost: View {
         
     }
     
+    func createPost(){
+        isLoading = true
+        Task{
+            do{
+//                guard let userprofileURL = myProfile?.userProfileURL else{return}
+                let songPostID = "\(myProfile?.userUID ?? "nil")\(Date())"
+                let storageRef = Storage.storage().reference().child("Post_Songs").child(songPostID)
+                if let postTrackData{
+                    let _ = try await storageRef.putDataAsync(postTrackData)
+                    let download = try await storageRef.downloadURL()
+                    let post = Post(track: track, trackName: track.name, userRealName: myProfile!.userRealName, userName: myProfile!.username, userUID: myProfile!.userUID, userProfileURL: myProfile!.userProfileURL)
+                    try await createDocumentAtFirebase(post)
+                } else{
+                    let post = Post(track: track, trackName: track.name, userRealName: myProfile!.userRealName, userName: myProfile!.username, userUID: myProfile!.userUID, userProfileURL: myProfile!.userProfileURL)
+                    try await createDocumentAtFirebase(post)
+                }
+            } catch{
+                await setError(error)
+            }
+        }
+    }
+    
+    func createDocumentAtFirebase(_ post: Post) async throws{
+        //if successfully uploaded to fireBase
+        let _ = try Firestore.firestore().collection("Posts").addDocument(from: post, completion: { error in
+            if error == nil{
+                isLoading = false
+//                onPost(post)
+                print("Saved Post successfully")
+                dismiss()
+            }
+        })
+    }
+    
+    func setError(_ error: Error) async{
+        //MARK: UI Must be run on Main Thread
+        
+        await MainActor.run(body: {
+//            isLoading = false
+            errorMessage = error.localizedDescription
+            showError.toggle()
+        })
+    }
+    
 }
 
 struct CreateNewPost_Previews: PreviewProvider {
@@ -184,10 +145,10 @@ struct CreateNewPost_Previews: PreviewProvider {
     
     static var previews: some View {
         
-        //        List(tracks, id: \.id) { trak in
-        //            CreateNewPost(track: trak)
-        //        }
-        CreateNewPost()
+                List(tracks, id: \.id) { track in
+                    CreateNewPost(track: track)
+                }
+//        CreateNewPost()
         
     }
 }

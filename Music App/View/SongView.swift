@@ -20,6 +20,7 @@ struct SongView: View {
     
     @State private var image = Image("Spotify Album Placeholder")
     @State private var backgroundColor: Color = .clear
+    @State private var showingCreatePostView = false
 
 
     
@@ -27,38 +28,49 @@ struct SongView: View {
     let track: Track
     
     var body: some View {
-        Button(action: playTrack) {
-            
-            HStack{
+        HStack{
+            Button(action: playTrack) {
                 
-                image
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 40, height: 40)
+                HStack{
                     
-                
-                VStack(alignment: .leading){
-                    Text(track.name.count >= 25 ? String(track.name.prefix(25) + "...") : track.name)
-                        .font(
-                            Font.custom("Inter", size: 18).weight(.semibold)
-                        )
+                    image
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 40, height: 40)
                         
-                    if let artistName = track.artists?.first?.name {
-                        Text(artistName)
+                    
+                    VStack(alignment: .leading){
+                        Text(track.name.count >= 25 ? String(track.name.prefix(25) + "...") : track.name)
                             .font(
-                                Font.custom("Inter", size: 18).weight(.light)
-                                )
+                                Font.custom("Inter", size: 18).weight(.semibold)
+                            )
+                            
+                        if let artistName = track.artists?.first?.name {
+                            Text(artistName)
+                                .font(
+                                    Font.custom("Inter", size: 18).weight(.light)
+                                    )
+                        }
                     }
+                    Spacer()
+                    
                 }
-                Spacer()
-                Image(systemName: "cursorarrow.click.2")
+                
             }
+            .onAppear{
+                loadImage()
+            }
+            .buttonStyle(.plain)
             
+            Button{
+                showingCreatePostView.toggle()
+            } label: {
+                Image(systemName: "plus.circle")
+            }
         }
-        .onAppear{
-            loadImage()
+        .sheet(isPresented: $showingCreatePostView) {
+            CreateNewPost(track: track)
         }
-        .buttonStyle(.plain)
         .alert(item: $alert) { alert in
             Alert(title: alert.title, message: alert.message)
         }
@@ -121,6 +133,8 @@ struct SongView: View {
                     // print("received image for '\(playlist.name)'")
                     self.image = image
                     self.setAverageColor()
+
+                    
                 }
             )
     }
@@ -178,7 +192,7 @@ extension UIImage {
         // convert our image to a Core Image Image
         
         guard let inputImage = CIImage(image: self) else { return nil }
-        print("Did run")
+        
         // Create an extent vector (a frame with width and height of our current input image)
         let extentVector = CIVector(x: inputImage.extent.origin.x,
                                     y: inputImage.extent.origin.y,

@@ -25,9 +25,9 @@ struct RootView: View {
         
         if logStatus{
                     TabView(selection: $selection) {
-                        HomeView() //CHANGE TO HOMEVIEW
+                        PostsView()
                             .tabItem {
-                                Label("Home", systemImage: "arrow.triangle.2.circlepath.circle")
+                                Label("Posts", systemImage: "rectangle.fill.on.rectangle.fill")
                             }
                             .tag(1)
                         SearchView()

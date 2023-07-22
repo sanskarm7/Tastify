@@ -28,6 +28,7 @@
 		75A13D632A573C5200387E08 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A13D622A573C5200387E08 /* LoadingView.swift */; };
 		A81A4D6D2A688637002A2A50 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81A4D6C2A688637002A2A50 /* HomeView.swift */; };
 		A83F190B2A66245F00415687 /* AlertItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83F190A2A66245F00415687 /* AlertItem.swift */; };
+		A89A7E352A6C345300EA3CB3 /* PostsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89A7E342A6C345300EA3CB3 /* PostsView.swift */; };
 		A8AA0DDD2A6216A100C9FCDE /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8AA0DDC2A6216A100C9FCDE /* ProfileView.swift */; };
 		A8AB59232A6B354F00E940A9 /* CreateNewPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8AB59222A6B354F00E940A9 /* CreateNewPost.swift */; };
 		A8AB59252A6B358E00E940A9 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8AB59242A6B358E00E940A9 /* Post.swift */; };
@@ -59,6 +60,7 @@
 		75A13D622A573C5200387E08 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		A81A4D6C2A688637002A2A50 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		A83F190A2A66245F00415687 /* AlertItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertItem.swift; sourceTree = "<group>"; };
+		A89A7E342A6C345300EA3CB3 /* PostsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsView.swift; sourceTree = "<group>"; };
 		A8AA0DDC2A6216A100C9FCDE /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		A8AB59222A6B354F00E940A9 /* CreateNewPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewPost.swift; sourceTree = "<group>"; };
 		A8AB59242A6B358E00E940A9 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
@@ -144,6 +146,7 @@
 				A81A4D6C2A688637002A2A50 /* HomeView.swift */,
 				75015EC42A6894F1003F471F /* EditProfileView.swift */,
 				A8AB59222A6B354F00E940A9 /* CreateNewPost.swift */,
+				A89A7E342A6C345300EA3CB3 /* PostsView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -262,6 +265,7 @@
 				75A13D582A561D0100387E08 /* LoginView.swift in Sources */,
 				A8E348FF2A61939600F7EDE4 /* TestView.swift in Sources */,
 				A8B818352A5775DC0003ECCF /* SpotifyAuthentication.swift in Sources */,
+				A89A7E352A6C345300EA3CB3 /* PostsView.swift in Sources */,
 				7567D6152A674CD7002D93DF /* ReusableProfileContent.swift in Sources */,
 				75A13D432A54BE1900387E08 /* ContentView.swift in Sources */,
 				A8C339F22A661D0C0084FE05 /* SpotifyAPIExtensions.swift in Sources */,

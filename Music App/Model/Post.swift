@@ -9,26 +9,29 @@ import Foundation
 import FirebaseFirestoreSwift
 import SpotifyWebAPI
 
-struct Post: Identifiable{
+struct Post: Identifiable, Codable{
 
     @DocumentID var id: String?
-    var text: String
+//    var text: String
     var track: Track
+    var trackName: String
 
     var likedIDs: [String] = []
     var nuetralIDs: [String] = []
     var dislikedIDs: [String] = []
 
+    var userRealName: String
     var userName: String
-    var userID: String
+    var userUID: String
     var userProfileURL: URL
 
 
-    enum CodingKeys: CodingKey{
+    private enum CodingKeys: CodingKey{
         //Post Content
         case id
-        case text
+//        case text
         case track
+        case trackName
 
         //Other user's reactions
         case likedIDs
@@ -36,6 +39,7 @@ struct Post: Identifiable{
         case dislikedIDs
 
         //Author's Post info
+        case userRealName
         case userName
         case userUID
         case userProfileURL

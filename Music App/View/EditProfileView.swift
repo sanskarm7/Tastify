@@ -161,7 +161,7 @@ struct EditProfileView: View {
                         userNameStored = userName
                         self.userUID = userUID
                         profileURL = downloadURL
-                        logStatus = true
+//                        logStatus = true
                         
                         
                     }
@@ -172,6 +172,7 @@ struct EditProfileView: View {
                 await setError(error)
             }
         }
+        dismiss()
     }
     
     func setError(_ error: Error) async{
