@@ -26,9 +26,10 @@
 		75A13D5F2A566A9200387E08 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 75A13D5E2A566A9200387E08 /* FirebaseStorage */; };
 		75A13D612A566DE800387E08 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A13D602A566DE800387E08 /* User.swift */; };
 		75A13D632A573C5200387E08 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A13D622A573C5200387E08 /* LoadingView.swift */; };
+		75FA11442A6C4DC6002D7649 /* AudioVisualizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75FA11432A6C4DC6002D7649 /* AudioVisualizer.swift */; };
+		75FA11462A6C4EC0002D7649 /* PostsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75FA11452A6C4EC0002D7649 /* PostsView.swift */; };
 		A81A4D6D2A688637002A2A50 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81A4D6C2A688637002A2A50 /* HomeView.swift */; };
 		A83F190B2A66245F00415687 /* AlertItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83F190A2A66245F00415687 /* AlertItem.swift */; };
-		A89A7E352A6C345300EA3CB3 /* PostsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89A7E342A6C345300EA3CB3 /* PostsView.swift */; };
 		A8AA0DDD2A6216A100C9FCDE /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8AA0DDC2A6216A100C9FCDE /* ProfileView.swift */; };
 		A8AB59232A6B354F00E940A9 /* CreateNewPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8AB59222A6B354F00E940A9 /* CreateNewPost.swift */; };
 		A8AB59252A6B358E00E940A9 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8AB59242A6B358E00E940A9 /* Post.swift */; };
@@ -58,9 +59,10 @@
 		75A13D572A561D0100387E08 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		75A13D602A566DE800387E08 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		75A13D622A573C5200387E08 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		75FA11432A6C4DC6002D7649 /* AudioVisualizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioVisualizer.swift; sourceTree = "<group>"; };
+		75FA11452A6C4EC0002D7649 /* PostsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsView.swift; sourceTree = "<group>"; };
 		A81A4D6C2A688637002A2A50 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		A83F190A2A66245F00415687 /* AlertItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertItem.swift; sourceTree = "<group>"; };
-		A89A7E342A6C345300EA3CB3 /* PostsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsView.swift; sourceTree = "<group>"; };
 		A8AA0DDC2A6216A100C9FCDE /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		A8AB59222A6B354F00E940A9 /* CreateNewPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewPost.swift; sourceTree = "<group>"; };
 		A8AB59242A6B358E00E940A9 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
@@ -146,7 +148,8 @@
 				A81A4D6C2A688637002A2A50 /* HomeView.swift */,
 				75015EC42A6894F1003F471F /* EditProfileView.swift */,
 				A8AB59222A6B354F00E940A9 /* CreateNewPost.swift */,
-				A89A7E342A6C345300EA3CB3 /* PostsView.swift */,
+				75FA11432A6C4DC6002D7649 /* AudioVisualizer.swift */,
+				75FA11452A6C4EC0002D7649 /* PostsView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -265,7 +268,6 @@
 				75A13D582A561D0100387E08 /* LoginView.swift in Sources */,
 				A8E348FF2A61939600F7EDE4 /* TestView.swift in Sources */,
 				A8B818352A5775DC0003ECCF /* SpotifyAuthentication.swift in Sources */,
-				A89A7E352A6C345300EA3CB3 /* PostsView.swift in Sources */,
 				7567D6152A674CD7002D93DF /* ReusableProfileContent.swift in Sources */,
 				75A13D432A54BE1900387E08 /* ContentView.swift in Sources */,
 				A8C339F22A661D0C0084FE05 /* SpotifyAPIExtensions.swift in Sources */,
@@ -275,12 +277,14 @@
 				75015EC52A6894F1003F471F /* EditProfileView.swift in Sources */,
 				75A13D632A573C5200387E08 /* LoadingView.swift in Sources */,
 				A8B818372A577C590003ECCF /* RootView.swift in Sources */,
+				75FA11442A6C4DC6002D7649 /* AudioVisualizer.swift in Sources */,
 				7567D6132A66028A002D93DF /* SearchView.swift in Sources */,
 				A83F190B2A66245F00415687 /* AlertItem.swift in Sources */,
 				75A13D412A54BE1900387E08 /* Music_AppApp.swift in Sources */,
 				A8C339F02A66178E0084FE05 /* SongView.swift in Sources */,
 				759D88732A5CAFB600C19F3E /* MusicApp.xcdatamodeld in Sources */,
 				7567D6112A65FE2D002D93DF /* SettingsView.swift in Sources */,
+				75FA11462A6C4EC0002D7649 /* PostsView.swift in Sources */,
 				A81A4D6D2A688637002A2A50 /* HomeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

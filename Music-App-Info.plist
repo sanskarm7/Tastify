@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Viewer</string>
+			<key>CFBundleURLName</key>
+			<string>com.sanskar.Music-App</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>musicapp</string>
+			</array>
+		</dict>
+	</array>
+	<key>UIAppFonts</key>
+	<array>
+		<string>static/Inter-Thin.ttf</string>
+		<string>static/Inter-ExtraLight.ttf
+static/Inter-ExtraLight.ttf</string>
+		<string>static/Inter-Light.ttf</string>
+		<string>static/Inter-Regular.ttf</string>
+		<string>static/Inter-Medium.ttf</string>
+		<string>static/Inter-SemiBold.ttf</string>
+		<string>static/Inter-Bold.ttf
+</string>
+		<string>static/Inter-ExtraBold.ttf</string>
+		<string>static/Inter-Black.ttf</string>
+	</array>
+</dict>
+</plist>
