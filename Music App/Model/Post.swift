@@ -4,26 +4,29 @@
 //
 //  Created by Jay Sunkara on 7/19/23.
 //
-
+//import SwiftUI
 import Foundation
 import FirebaseFirestoreSwift
 import SpotifyWebAPI
 
-struct Post: Identifiable, Codable{
+struct Post: Identifiable, Codable, Equatable, Hashable{
 
     @DocumentID var id: String?
 //    var text: String
     var track: Track
-    var trackName: String
-
+    var albumImageURL: URL?
+    var imageReferenceID: String = ""
+    var imageColor: [CGFloat] = []
+    
     var likedIDs: [String] = []
-    var nuetralIDs: [String] = []
+    var neutralIDs: [String] = []
     var dislikedIDs: [String] = []
 
-    var userRealName: String
     var userName: String
     var userUID: String
     var userProfileURL: URL
+    
+    var publishedDate: Date = Date()
 
 
     private enum CodingKeys: CodingKey{
@@ -31,18 +34,23 @@ struct Post: Identifiable, Codable{
         case id
 //        case text
         case track
-        case trackName
+        case albumImageURL
+        case imageReferenceID
+        case imageColor
+        
 
+        
         //Other user's reactions
         case likedIDs
-        case nuetralIDs
+        case neutralIDs
         case dislikedIDs
 
         //Author's Post info
-        case userRealName
         case userName
         case userUID
         case userProfileURL
+        
+        case publishedDate
     }
 
 }

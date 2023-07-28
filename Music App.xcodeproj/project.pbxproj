@@ -52,6 +52,8 @@
 		A8E348FF2A61939600F7EDE4 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E348FE2A61939600F7EDE4 /* TestView.swift */; };
 		A8EC1B032A58C46E00882E4A /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = A8EC1B022A58C46E00882E4A /* KeychainAccess */; };
 		A8F093432A59F4450046DAE4 /* OldSpotifyAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F093422A59F4450046DAE4 /* OldSpotifyAuth.swift */; };
+		A8FC52972A7483B400431D65 /* ReusablepostsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FC52962A7483B400431D65 /* ReusablepostsView.swift */; };
+		A8FC52992A7483EE00431D65 /* PostCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FC52982A7483EE00431D65 /* PostCardView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -94,6 +96,8 @@
 		A8C339F12A661D0C0084FE05 /* SpotifyAPIExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyAPIExtensions.swift; sourceTree = "<group>"; };
 		A8E348FE2A61939600F7EDE4 /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
 		A8F093422A59F4450046DAE4 /* OldSpotifyAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldSpotifyAuth.swift; sourceTree = "<group>"; };
+		A8FC52962A7483B400431D65 /* ReusablepostsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusablepostsView.swift; sourceTree = "<group>"; };
+		A8FC52982A7483EE00431D65 /* PostCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCardView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -190,6 +194,8 @@
 				75FA11432A6C4DC6002D7649 /* AudioVisualizer.swift */,
 				75FA11452A6C4EC0002D7649 /* PostsView.swift */,
 				7505DA772A6C629A008907CD /* CurrentSongView.swift */,
+				A8FC52962A7483B400431D65 /* ReusablepostsView.swift */,
+				A8FC52982A7483EE00431D65 /* PostCardView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -313,6 +319,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A8FC52992A7483EE00431D65 /* PostCardView.swift in Sources */,
 				75A13D612A566DE800387E08 /* User.swift in Sources */,
 				A8AB59252A6B358E00E940A9 /* Post.swift in Sources */,
 				A8AB59232A6B354F00E940A9 /* CreateNewPost.swift in Sources */,
@@ -328,6 +335,7 @@
 				759D88752A5CAFFC00C19F3E /* DataController.swift in Sources */,
 				75015EC52A6894F1003F471F /* EditProfileView.swift in Sources */,
 				75A13D632A573C5200387E08 /* LoadingView.swift in Sources */,
+				A8FC52972A7483B400431D65 /* ReusablepostsView.swift in Sources */,
 				A8B818372A577C590003ECCF /* RootView.swift in Sources */,
 				75FA11442A6C4DC6002D7649 /* AudioVisualizer.swift in Sources */,
 				7567D6132A66028A002D93DF /* SearchView.swift in Sources */,

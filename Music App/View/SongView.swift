@@ -69,7 +69,9 @@ struct SongView: View {
             }
         }
         .sheet(isPresented: $showingCreatePostView) {
-            CreateNewPost(track: track)
+            CreateNewPost(track: track) {_ in
+                
+            }
         }
         .alert(item: $alert) { alert in
             Alert(title: alert.title, message: alert.message)
