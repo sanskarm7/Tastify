@@ -125,6 +125,7 @@ struct SearchView: View {
             receiveValue: { searchResults in
                 self.tracks = searchResults.tracks?.items ?? []
                 print("received \(self.tracks.count) tracks")
+                //print(tracks[0])
             }
         )
     }

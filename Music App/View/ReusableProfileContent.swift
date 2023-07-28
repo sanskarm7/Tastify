@@ -7,9 +7,22 @@
 
 import SwiftUI
 import SDWebImageSwiftUI
+import SpotifyWebAPI
+import Combine
 
 struct ReusableProfileContent: View {
     var user: User
+    
+    @EnvironmentObject var spotify: Spotify
+    
+    @State private var trackCancellable: AnyCancellable? = nil
+    
+    
+    @State var track: Track? = nil
+    @State var isPlaying: Bool? = false
+    
+    @State var currentlyPlaying: PlaylistItem? = nil
+
     
     var body: some View{
         ScrollView(.vertical, showsIndicators: false) {
@@ -34,48 +47,13 @@ struct ReusableProfileContent: View {
                     .foregroundColor(.gray)
                     .lineLimit(3)
                 
-                ZStack{
-                    Rectangle()
-                        .foregroundColor(.clear)
-                        .frame(width: 330, height: 90)
-                        .background(Color(red: 0.24, green: 0.4, blue: 0.58))
-                        .cornerRadius(20)
-                    
-                    HStack{
-                        Rectangle()
-                            .foregroundColor(.clear)
-                            .frame(width: 70, height: 70)
-                            .background(
-                                Image("NullAlbum")
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fill)
-                                    .frame(width: 70, height: 70)
-                                    .clipped()
-                            )
-                        VStack(alignment: .leading){
-                            Spacer()
-                            Text("COFFEE BEAN")
-                                .font(.custom("Inter-Bold", size: 18)
-                                      
-                                )
-                                .foregroundColor(.white)
-                            //.frame(width: 174, height: 30, alignment: .topLeading)
-                            
-                            Text("Travis Scott")
-                                .font(
-                                    Font.custom("Inter-Bold", size: 18)
-                                        .weight(.light)
-                                )
-                                .foregroundColor(.white)
-                            //.frame(width: 174, height: 40, alignment: .topLeading)
-                            Spacer()
-                        }
-                        .padding(.trailing)
-                        AudioVisualizer().scaleEffect(x: 0.75, y: 0.75)
-                        
-                        
-                    }
+                
+                
+                if self.currentlyPlaying != nil{
+                    CurrentSongView(currentlyPlaying: self.currentlyPlaying!, isPlaying: self.isPlaying!)
                 }
+                
+                
                 
                 //MARK: Displaying Bio Link, if given while signing up
                 
@@ -86,6 +64,61 @@ struct ReusableProfileContent: View {
 //                        .lineLimit(1)
 //                }
             }
+            
+            .onAppear{
+                
+                getCurrentTrack()
+                
+//                if playbackContext != nil {
+//                    print("Not null")
+//                }
+            }
         }
     }
+    
+//    //func getTrack() {
+//
+//        trackCancellable = spotify.api.track("spotify:track:7lEptt4wbM0yJTvSG5EBof")
+//            .receive(on: RunLoop.main)
+//            .sink(
+//                receiveCompletion: { completion in
+//                    if case .failure(let error) = completion {
+//                        print("Error: \(error)")
+//                    }
+//                },
+//                receiveValue: { track in
+//                    print(track)
+//                    self.track = track
+//                }
+//            )
+//
+//    }
+    func getCurrentTrack() {
+        
+        
+        trackCancellable = self.spotify.api.currentPlayback()
+            .receive(on: RunLoop.main)
+            .sink(
+                receiveCompletion: { completion in
+                    if case .failure(let error) = completion {
+                        print("Error: \(error)")
+                    }
+                },
+                receiveValue: { playbackContext in
+                    print("this gets called")
+                   // print(playbackContext!.device.isActive)
+//                    if playbackContext?.itemType.rawValue == "track" {
+//                        self.track = playbackContext?.item
+//                    }
+                    self.currentlyPlaying = playbackContext?.item
+                    isPlaying = playbackContext?.isPlaying
+                    
+                    //print(playbackContext?.device)
+                    //print(currentlyPlaying?.name)
+                    
+                }
+            )
+    }
+    
 }
+

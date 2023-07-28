@@ -17,17 +17,9 @@
 	</array>
 	<key>UIAppFonts</key>
 	<array>
-		<string>static/Inter-Thin.ttf</string>
-		<string>static/Inter-ExtraLight.ttf
-static/Inter-ExtraLight.ttf</string>
-		<string>static/Inter-Light.ttf</string>
-		<string>static/Inter-Regular.ttf</string>
-		<string>static/Inter-Medium.ttf</string>
-		<string>static/Inter-SemiBold.ttf</string>
-		<string>static/Inter-Bold.ttf
-</string>
-		<string>static/Inter-ExtraBold.ttf</string>
-		<string>static/Inter-Black.ttf</string>
+		<string>Inter-Light.ttf</string>
+		<string>Inter-Regular.ttf</string>
+		<string>Inter-SemiBold.ttf</string>
 	</array>
 </dict>
 </plist>

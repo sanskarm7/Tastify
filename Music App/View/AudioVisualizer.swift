@@ -8,28 +8,52 @@ import SwiftUI
 
 struct AudioVisualizer: View {
     @State private var drawingHeight = true
+    
+    @State var isPlaying: Bool
 
     var animation: Animation {
         return .linear(duration: 0.5).repeatForever()
     }
 
     var body: some View {
-        HStack {
+        
+        if isPlaying{
             HStack {
-                bar(low: 0.4)
-                    .animation(animation.speed(1.5), value: drawingHeight)
-                bar(low: 0.3)
-                    .animation(animation.speed(1.2), value: drawingHeight)
-                bar(low: 0.5)
-                    .animation(animation.speed(1.0), value: drawingHeight)
-                bar(low: 0.3)
-                    .animation(animation.speed(1.7), value: drawingHeight)
-            }.frame(width: 50)
+                HStack {
+                    bar(low: 0.4)
+                        .animation(animation.speed(1.5), value: drawingHeight)
+                    bar(low: 0.3)
+                        .animation(animation.speed(1.2), value: drawingHeight)
+                    bar(low: 0.5)
+                        .animation(animation.speed(1.0), value: drawingHeight)
+                    bar(low: 0.3)
+                        .animation(animation.speed(1.7), value: drawingHeight)
+                }.frame(width: 50)
+            }
+            .frame(width: 40)
+            .onAppear{
+                drawingHeight.toggle()
+            }
         }
-        .frame(width: 60)
-        .onAppear{
-            drawingHeight.toggle()
+        else{
+            HStack {
+                HStack {
+                    bar(low: 0.2, high: 0.2)
+                        .animation(animation.speed(0), value: drawingHeight)
+                    bar(low: 0.2, high: 0.2)
+                        .animation(animation.speed(0), value: drawingHeight)
+                    bar(low: 0.2, high: 0.2)
+                        .animation(animation.speed(0), value: drawingHeight)
+                    bar(low: 0.2, high: 0.2)
+                        .animation(animation.speed(0.5), value: drawingHeight)
+                }.frame(width: 50)
+            }
+            .frame(width: 40)
+            .onAppear{
+                drawingHeight.toggle()
+            }
         }
+        
 
     }
 
@@ -44,8 +68,8 @@ struct AudioVisualizer: View {
 
 
 
-struct AudioVisualizer_Previews: PreviewProvider {
-    static var previews: some View {
-        AudioVisualizer()
-    }
-}
+//struct AudioVisualizer_Previews: PreviewProvider {
+//    static var previews: some View {
+//        AudioVisualizer()
+//    }
+//}

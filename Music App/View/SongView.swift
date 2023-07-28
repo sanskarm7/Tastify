@@ -18,7 +18,7 @@ struct SongView: View {
 
     @State private var alert: AlertItem? = nil
     
-    @State private var image = Image("Spotify Album Placeholder")
+    @State private var image = Image("NullAlbum")
     @State private var backgroundColor: Color = .clear
     @State private var showingCreatePostView = false
 
