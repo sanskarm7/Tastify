@@ -38,14 +38,13 @@ struct ReusableProfileContent: View {
                 .clipShape(Circle())
                 
                 Text(user.username)
-                    .font(.largeTitle)
                     .foregroundColor(Color.white)
-                    .fontWeight(.semibold)
+                    .font(.custom("Inter-SemiBold", size: 36, relativeTo: .largeTitle))
+                          
                 
                 Text(user.userRealName)
-                    .font(.caption)
-                    .foregroundColor(.gray)
-                    .lineLimit(3)
+                    .foregroundColor(Color.gray)
+                    .font(.custom("Inter-Light", size: 18, relativeTo: .caption))
                 
                 
                 
