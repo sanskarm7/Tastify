@@ -21,13 +21,19 @@ struct ReusableProfileContent: View {
     @State var track: Track? = nil
     @State var isPlaying: Bool? = false
     
+    @State var score: CGFloat = 77
+    @State var friends: Int = 0
+    
     @State var currentlyPlaying: PlaylistItem? = nil
+    
+    @State var selectedMusic: Bool = true
 
     
     var body: some View{
         ScrollView(.vertical, showsIndicators: false) {
             VStack{
                 
+                //MARK: Profile Picture
                 ZStack{
                     Image("ProfilePicBG")
                     .frame(width: 150, height: 150)
@@ -52,23 +58,76 @@ struct ReusableProfileContent: View {
                 }
                 
                 
-                
+                //MARK: Identifying Info
                 Text(user.username)
                     .foregroundColor(Color.white)
                     .font(.custom("Inter-SemiBold", size: 36, relativeTo: .largeTitle))
-                          
-                
+                    
+                    
                 Text(user.userRealName)
                     .foregroundColor(Color.gray)
-                    .font(.custom("Inter-Light", size: 18, relativeTo: .caption))
+                    .font(.custom("Inter-Light", size: 16, relativeTo: .caption))
+                    .padding(.bottom)
                 
+                Text(String(friends) + " Friends")
+                    .foregroundColor(Color.white)
+                    .font(.custom("Inter-Regular", size: 18, relativeTo: .caption))
                 
-                
+                //MARK: Currently Playing - only loads on reload
                 if self.currentlyPlaying != nil{
                     CurrentSongView(currentlyPlaying: self.currentlyPlaying!, isPlaying: self.isPlaying!)
                 }
+                    //MARK: Taste Meter
+                    TasteMeter(value: score)
+        
+                HStack{
+                    Spacer()
+                    
+                    
+                    Button {
+                        selectedMusic = true
+                    } label: {
+                        Image("MusicTab")
+                        .frame(width: 32, height: 32)
+                    }
+
+                    
+                    Spacer()
+                    Spacer()
+                    Button {
+                        selectedMusic = false
+                    } label: {
+                        Image("FriendsTab")
+                        .frame(width: 40, height: 32)
+                    }
+                    Spacer()
+                }
                 
-                TasteMeter(value: 78)
+                ZStack{
+                    
+                    //MARK: Separator
+                    Rectangle()
+                    .foregroundColor(.clear)
+                    .frame(width: 390, height: 1)
+                    .background(Color(red: 0.85, green: 0.85, blue: 0.85))
+                    
+                    HStack{
+                        
+                        if selectedMusic == false{
+                            
+                        }
+                        //MARK: Selected Tab
+                        Rectangle()
+                        .foregroundColor(.clear)
+                        .frame(width: 195, height: 3)
+                        .background(Color(red: 0.85, green: 0.85, blue: 0.85))
+                        
+                        Spacer()
+                    }
+                   
+                }
+                
+                
                     
                 
                 

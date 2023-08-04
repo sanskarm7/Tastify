@@ -10,6 +10,8 @@ import SDWebImageSwiftUI
 import Firebase
 import FirebaseStorage
 import FirebaseFirestore
+import Combine
+import SpotifyWebAPI
 
 
 struct ProfileView: View {
@@ -19,7 +21,12 @@ struct ProfileView: View {
     @State var errorMessage: String = ""
     @State var showError: Bool = false
     @State var isLoading: Bool = false
+    
     @EnvironmentObject var spotify: Spotify
+    @State var isPlaying: Bool? = false
+    @State var currentlyPlaying: PlaylistItem? = nil
+    
+    @State private var trackCancellable: AnyCancellable? = nil
     
 
     var body: some View {
@@ -43,6 +50,8 @@ struct ProfileView: View {
                     .toolbar {
                         ToolbarItem(placement: .navigationBarTrailing) {
                             
+                            
+                            //Change to pass myProfile?
                             NavigationLink(destination: SettingsView(currUserName: myProfile?.username ?? "Username", currUserRealName: myProfile?.userRealName ?? "Name", currUserEmail: myProfile?.userEmail ?? "email")) {
                                 Image("Settings")
                                     .font(.headline)
@@ -50,6 +59,9 @@ struct ProfileView: View {
                     }
                 }
             }
+        }
+        .onAppear{
+            getCurrentTrack()
         }
         .overlay{
                 LoadingView(show: $isLoading)
@@ -85,6 +97,28 @@ struct ProfileView: View {
             errorMessage = error.localizedDescription
             showError.toggle()
         })
+    }
+    
+    func getCurrentTrack() {
+        
+        
+        trackCancellable = self.spotify.api.currentPlayback()
+            .receive(on: RunLoop.main)
+            .sink(
+                receiveCompletion: { completion in
+                    if case .failure(let error) = completion {
+                        print("Error: \(error)")
+                    }
+                },
+                receiveValue: { playbackContext in
+                    self.currentlyPlaying = playbackContext?.item
+                    if currentlyPlaying != nil{
+                        myProfile?.currentlyPlaying[0] = self.currentlyPlaying!
+                    }
+                    isPlaying = playbackContext?.isPlaying
+                    
+                }
+            )
     }
     
     

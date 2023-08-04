@@ -47,7 +47,8 @@ struct TasteMeter: View {
 
                         
                         Text("Taste Meter")
-                          .font(Font.custom("Inter", size: 12))
+                          //.font(Font.custom("Inter", size: 12))
+                            .font(.custom("Inter-Regular", size: 12, relativeTo: .subheadline))
                           .multilineTextAlignment(.center)
                           .foregroundColor(Color.white)
                     }
@@ -112,7 +113,7 @@ struct TasteMeter: View {
                     
                     
                     Text(String(format: "%.0f", Double(value)))
-                    .font(Font.custom("Inter", size: 20))
+                        .font(.custom("Inter-Regular", size: 20, relativeTo: .subheadline))
                     .multilineTextAlignment(.center)
                     .foregroundColor(color2)
                     .shadow(color: color2, radius: 0.10434, x: 0, y: 0)
@@ -129,6 +130,7 @@ struct TasteMeter: View {
                 
                 
             }
+            .frame(width: 340, height: 50, alignment: .top)
             .onAppear{
                 colorPicker()
             }
@@ -138,7 +140,8 @@ struct TasteMeter: View {
     
             
         }
-        .frame(width: 340, height: 99)
+        
+        
         
         
         

@@ -15,7 +15,6 @@ struct CurrentSongView: View {
     
     @EnvironmentObject var spotify: Spotify
     
-    //let track: Track
     
     let currentlyPlaying: PlaylistItem
     
@@ -29,9 +28,6 @@ struct CurrentSongView: View {
     @State var currentEpisode: Episode? = nil
     @State var isTrack: Bool = true
     
-//    @State var title: String = ""
-//    @State var artistNames: [String] = []
-//    @State var showName: String = ""
     
     
     var body: some View {
@@ -113,29 +109,17 @@ struct CurrentSongView: View {
             }
         }
         .frame(width: 330, height: 110)
+        .padding(.bottom)
         .onAppear{
-            
-//            for family in UIFont.familyNames {
-//                print(family)
-//                for fontName in UIFont.fontNames(forFamilyName: family){
-//                    print("-- \(fontName)")
-//                }
-//            }
+        
             
             switch currentlyPlaying {
             case .track(let track):
                 isTrack = true
                 currentTrack = track
-
-//                ForEach(currentTrack!.artists) {artist in
-//                    artistNames.append(artist.name)
-//                }
-//                artists = currentTrack.artists!
             case .episode(let episode):
                 isTrack = false
                 currentEpisode = episode
-//                title = episode.name
-//                showName = episode.show!.name
             }
             loadImage()
             }
@@ -143,7 +127,6 @@ struct CurrentSongView: View {
     
     func loadImage() {
         guard let spotifyImage = currentTrack?.album?.images?.first else {
-            // print("no image found for '\(playlist.name)'")
             return
         }
 
@@ -152,7 +135,6 @@ struct CurrentSongView: View {
             .sink(
                 receiveCompletion: { _ in },
                 receiveValue: { image in
-                    // print("received image for '\(playlist.name)'")
                     self.image = image
                     self.setAverageColor()
 
@@ -166,8 +148,6 @@ struct CurrentSongView: View {
         let uiImage: UIImage = image.asUIImage() // Works Perfectly
 
          let uiColor = uiImage.averageColor ?? .darkGray
-
-    //    let uiColor = UIImage(named: images[currentIndex])?.averageColor ?? .clear
         backgroundColor = Color(uiColor)
     }
  }
