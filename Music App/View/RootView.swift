@@ -41,6 +41,7 @@ struct RootView: View {
                             }
                             .tag(3)
                     }
+                    .accentColor(Color.purple)
                     .onOpenURL(perform: handleURL(_:))
                     .onAppear{
                         if spotify.isAuthorized == false{
