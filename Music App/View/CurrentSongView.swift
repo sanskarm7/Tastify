@@ -112,6 +112,7 @@ struct CurrentSongView: View {
                 
             }
         }
+        .frame(width: 330, height: 110)
         .onAppear{
             
 //            for family in UIFont.familyNames {
