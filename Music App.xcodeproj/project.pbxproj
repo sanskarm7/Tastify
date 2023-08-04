@@ -37,6 +37,7 @@
 		75A13D5F2A566A9200387E08 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 75A13D5E2A566A9200387E08 /* FirebaseStorage */; };
 		75A13D612A566DE800387E08 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A13D602A566DE800387E08 /* User.swift */; };
 		75A13D632A573C5200387E08 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A13D622A573C5200387E08 /* LoadingView.swift */; };
+		75A18B562A7C566B007F59B3 /* TasteMeter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A18B552A7C566B007F59B3 /* TasteMeter.swift */; };
 		75FA11442A6C4DC6002D7649 /* AudioVisualizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75FA11432A6C4DC6002D7649 /* AudioVisualizer.swift */; };
 		75FA11462A6C4EC0002D7649 /* PostsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75FA11452A6C4EC0002D7649 /* PostsView.swift */; };
 		A81A4D6D2A688637002A2A50 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81A4D6C2A688637002A2A50 /* HomeView.swift */; };
@@ -82,6 +83,7 @@
 		75A13D572A561D0100387E08 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		75A13D602A566DE800387E08 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		75A13D622A573C5200387E08 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		75A18B552A7C566B007F59B3 /* TasteMeter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasteMeter.swift; sourceTree = "<group>"; };
 		75FA11432A6C4DC6002D7649 /* AudioVisualizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioVisualizer.swift; sourceTree = "<group>"; };
 		75FA11452A6C4EC0002D7649 /* PostsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsView.swift; sourceTree = "<group>"; };
 		A81A4D6C2A688637002A2A50 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -196,6 +198,7 @@
 				7505DA772A6C629A008907CD /* CurrentSongView.swift */,
 				A8FC52962A7483B400431D65 /* ReusablepostsView.swift */,
 				A8FC52982A7483EE00431D65 /* PostCardView.swift */,
+				75A18B552A7C566B007F59B3 /* TasteMeter.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -340,6 +343,7 @@
 				75FA11442A6C4DC6002D7649 /* AudioVisualizer.swift in Sources */,
 				7567D6132A66028A002D93DF /* SearchView.swift in Sources */,
 				A83F190B2A66245F00415687 /* AlertItem.swift in Sources */,
+				75A18B562A7C566B007F59B3 /* TasteMeter.swift in Sources */,
 				75A13D412A54BE1900387E08 /* Music_AppApp.swift in Sources */,
 				A8C339F02A66178E0084FE05 /* SongView.swift in Sources */,
 				759D88732A5CAFB600C19F3E /* MusicApp.xcdatamodeld in Sources */,
