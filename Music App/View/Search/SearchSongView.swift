@@ -9,7 +9,7 @@ import SwiftUI
 import SpotifyWebAPI
 import Combine
 
-struct SearchView: View {
+struct SearchSongView: View {
 
     @EnvironmentObject var spotify: Spotify
     
@@ -132,12 +132,12 @@ struct SearchView: View {
     
 }
 
-struct SearchView_Previews: PreviewProvider {
+struct SearchSongView_Previews: PreviewProvider {
     
     static let spotify = Spotify()
     static var previews: some View {
         
-            SearchView()
+            SearchSongView()
             .listStyle(.plain)
                 .environmentObject(spotify)
     }

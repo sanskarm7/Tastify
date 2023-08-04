@@ -92,6 +92,8 @@ struct ReusablePostsView: View {
 //                    .order(by: "publishedDate", descending: true)
 //                    .limit(to: 20)
 //            }
+            
+            
             query = Firestore.firestore().collection("Posts")
                 .order(by: "publishedDate", descending: true)
 //                .limit(to: 20)
@@ -100,8 +102,14 @@ struct ReusablePostsView: View {
                 try? doc.data(as: Post.self)
             }
             await MainActor.run(body: {
-                
-                posts.append(contentsOf: fetchedPosts)
+                var tempPosts: [Post] = []
+                for p in fetchedPosts{
+                    if((Calendar.current.dateComponents([.hour], from: p.publishedDate, to: Date())).hour! <= 24){
+                        tempPosts.append(p)
+                    }
+                }
+
+                posts.append(contentsOf: tempPosts)
 
                 paginationDoc = docs.documents.last
                 isFetching = false

@@ -237,6 +237,7 @@ struct RegisterView: View {
             
             TextField("Username", text: $userName)
                 .textContentType(.emailAddress)
+                .textCase(.lowercase)
                 .border(1, .gray.opacity(0.5))
                 
             
@@ -285,7 +286,7 @@ struct RegisterView: View {
                 //Downloading photo URL
                 let downloadURL = try await storageRef.downloadURL()
                 //Creating a user firestore object - removed [userBioLink: bioLink,]
-                let user = User(username: userName, userRealName: userRealName, userUID: userUID, userEmail: emailID, userProfileURL: downloadURL)
+                let user = User(username: userName.lowercased(), userRealName: userRealName, userUID: userUID, userEmail: emailID, userProfileURL: downloadURL)
                 // Saving User Doc into Firestore database
                 
                 let _ = try Firestore.firestore().collection("Users").document(userUID).setData(from: user, completion:{
