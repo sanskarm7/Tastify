@@ -27,15 +27,31 @@ struct ReusableProfileContent: View {
     var body: some View{
         ScrollView(.vertical, showsIndicators: false) {
             VStack{
-                WebImage(url: user.userProfileURL).placeholder{
-                    //MARK: Placeholder Image
-                    Image("null_pfp")
-                        .resizable()
+                
+                ZStack{
+                    Image("ProfilePicBG")
+                    .frame(width: 150, height: 150)
+                    .background(Color(red: 0.16, green: 0.04, blue: 0.49))
+                    .clipShape(Circle())
+                    .shadow(color: Color(red: 0.16, green: 0.04, blue: 0.49), radius: 1.0066, x: 0, y: 0)
+                    .shadow(color: Color(red: 0.16, green: 0.04, blue: 0.49), radius: 2.01321, x: 0, y: 0)
+                    .shadow(color: Color(red: 0.16, green: 0.04, blue: 0.49), radius: 7.04622, x: 0, y: 0)
+                    .shadow(color: Color(red: 0.16, green: 0.04, blue: 0.49), radius: 14.09244, x: 0, y: 0)
+                    .shadow(color: Color(red: 0.16, green: 0.04, blue: 0.49), radius: 24.15848, x: 0, y: 0)
+                    .shadow(color: Color(red: 0.16, green: 0.04, blue: 0.49), radius: 42.27733, x: 0, y: 0)
+                    
+                    WebImage(url: user.userProfileURL).placeholder{
+                        //MARK: Placeholder Image
+                        Image("null_pfp")
+                            .resizable()
+                    }
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: 150, height: 150)
+                    .clipShape(Circle())
                 }
-                .resizable()
-                .aspectRatio(contentMode: .fill)
-                .frame(width: 150, height: 150)
-                .clipShape(Circle())
+                
+                
                 
                 Text(user.username)
                     .foregroundColor(Color.white)
@@ -52,6 +68,9 @@ struct ReusableProfileContent: View {
                     CurrentSongView(currentlyPlaying: self.currentlyPlaying!, isPlaying: self.isPlaying!)
                 }
                 
+                TasteMeter(value: 78)
+                    
+                
                 
                 
                 //MARK: Displaying Bio Link, if given while signing up
@@ -65,33 +84,11 @@ struct ReusableProfileContent: View {
             }
             
             .onAppear{
-                
                 getCurrentTrack()
-                
-//                if playbackContext != nil {
-//                    print("Not null")
-//                }
             }
         }
     }
     
-//    //func getTrack() {
-//
-//        trackCancellable = spotify.api.track("spotify:track:7lEptt4wbM0yJTvSG5EBof")
-//            .receive(on: RunLoop.main)
-//            .sink(
-//                receiveCompletion: { completion in
-//                    if case .failure(let error) = completion {
-//                        print("Error: \(error)")
-//                    }
-//                },
-//                receiveValue: { track in
-//                    print(track)
-//                    self.track = track
-//                }
-//            )
-//
-//    }
     func getCurrentTrack() {
         
         
@@ -104,16 +101,8 @@ struct ReusableProfileContent: View {
                     }
                 },
                 receiveValue: { playbackContext in
-                    print("this gets called")
-                   // print(playbackContext!.device.isActive)
-//                    if playbackContext?.itemType.rawValue == "track" {
-//                        self.track = playbackContext?.item
-//                    }
                     self.currentlyPlaying = playbackContext?.item
                     isPlaying = playbackContext?.isPlaying
-                    
-                    //print(playbackContext?.device)
-                    //print(currentlyPlaying?.name)
                     
                 }
             )
