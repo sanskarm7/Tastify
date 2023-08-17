@@ -38,9 +38,15 @@ struct ProfileView: View {
                         if let myProfile{
                             ReusableProfileContent(user: myProfile)
                                 .refreshable {
+                                    
+                                print("this runs - refreshable")
                                 //Refresh User Data
+                                
                                 self.myProfile = nil
                                 await fetchUserData()
+                                getCurrentTrack()
+                                //updateUser(profile: myProfile)
+                                
                             }
                         }
                         else{
@@ -59,10 +65,9 @@ struct ProfileView: View {
                     }
                 }
             }
+            
         }
-        .onAppear{
-            getCurrentTrack()
-        }
+
         .overlay{
                 LoadingView(show: $isLoading)
             }
@@ -71,20 +76,41 @@ struct ProfileView: View {
             }
             .task{
                 //MARK: Initial Fetch
-                
+                print("initial fetch")
                 if myProfile != nil{return}
+                print("print before await")
                 await fetchUserData()
+//                print("initial get track")
+                getCurrentTrack()
+//                print(currentlyPlaying?.name)
+//                print("initial update user")
+
+
+
             }
 
     }
     //MARK: Fetching User Data
-    func fetchUserData()async{
+    func fetchUserData() async {
+        print("fetch user data called")
+        guard let userUID = Auth.auth().currentUser?.uid else{ return }
+        print("user UID gotten " + userUID)
         
-        guard let userUID = Auth.auth().currentUser?.uid else{ return}
-        guard let user = try? await Firestore.firestore().collection("Users").document(userUID).getDocument(as: User.self) else{return}
+        guard let user = try? await Firestore.firestore().collection("Users").document(userUID).getDocument(as: User.self)
+        else {
+            print("failed")
+            return
+            
+        }
+        print("user received")
+//        return user
+        
         await MainActor.run(body: {
             myProfile = user
+           print("main actor finish")
+
         })
+        print("after main actor")
         
     }
     
@@ -100,8 +126,8 @@ struct ProfileView: View {
     }
     
     func getCurrentTrack() {
-        
-        
+        print("getCurrentTrack running")
+        var currentPlayback: CurrentlyPlayingContext?
         trackCancellable = self.spotify.api.currentPlayback()
             .receive(on: RunLoop.main)
             .sink(
@@ -111,18 +137,89 @@ struct ProfileView: View {
                     }
                 },
                 receiveValue: { playbackContext in
-                    self.currentlyPlaying = playbackContext?.item
-                    if currentlyPlaying != nil{
-                        myProfile?.currentlyPlaying[0] = self.currentlyPlaying!
+                    print("running")
+                    if playbackContext != nil{
+                        currentPlayback = playbackContext!
+                        currentlyPlaying = playbackContext?.item
+                        isPlaying = playbackContext?.isPlaying
+                        updateUser(profile: myProfile!)
                     }
-                    isPlaying = playbackContext?.isPlaying
+                    
+                    print("get track: " + (currentlyPlaying?.name ?? "nil"))
+                    //print("get track status: " + isPlaying)
+                    print("Currently Playing: " + (currentPlayback?.item?.name ?? "nothing"))
+                    
+
                     
                 }
+                
             )
+        
+    }
+    
+    func updateUser(profile: User) {
+        print("update user called")
+        print(profile.username)
+        print("currently playing update user: " + (currentlyPlaying?.name ?? "none"))
+    
+        let db = Firestore.firestore()
+        
+
+        let docRef = db.collection("Users").document(profile.userUID)
+        
+        if currentlyPlaying != nil {
+            let currently: current?
+//            switch currentlyPlaying! {
+//            case .track(let track):
+//                currently = current(track: track, isPlaying: self.isPlaying!)
+//            case .episode(_):
+//                currently = nil
+//            }
+            currently = current(PlaylistItem: self.currentlyPlaying!, isPlaying: self.isPlaying!)
+            
+            if currently != nil {
+                do{
+                    //let encoder = JSONEncoder()
+                    
+                    //encoder.outputFormatting = .prettyPrinted
+                    
+                    let data = try Firestore.Encoder().encode(currently!)
+                    
+                    //print(String(data: data, encoding: .utf8)!)
+                    
+                    docRef.updateData(["currentlyPlaying": [data]]) { error in
+                        if let error = error {
+                            print("Error updating document: \(error)")
+                        } else {
+                            print("currently playing successfully updated!")
+                        }
+                    }
+                }
+                catch{
+                    print("error, not serializable")
+                }
+            }
+           
+            
+            
+            
+        }
+        
+            
+        
     }
     
     
 }
+
+struct current: Codable {
+    var PlaylistItem: PlaylistItem
+    var isPlaying: Bool
+    
+    
+}
+
+
 struct figma_Previews: PreviewProvider {
     static var previews: some View {
         ProfileView()

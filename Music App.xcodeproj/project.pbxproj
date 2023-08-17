@@ -37,6 +37,7 @@
 		75A13D5F2A566A9200387E08 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 75A13D5E2A566A9200387E08 /* FirebaseStorage */; };
 		75A13D612A566DE800387E08 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A13D602A566DE800387E08 /* User.swift */; };
 		75A13D632A573C5200387E08 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A13D622A573C5200387E08 /* LoadingView.swift */; };
+		75A161C42A8EE64A004E1D04 /* SlidingTabView in Frameworks */ = {isa = PBXBuildFile; productRef = 75A161C32A8EE64A004E1D04 /* SlidingTabView */; };
 		75A18B562A7C566B007F59B3 /* TasteMeter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A18B552A7C566B007F59B3 /* TasteMeter.swift */; };
 		75A18B582A7DAC5D007F59B3 /* FriendsTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A18B572A7DAC5D007F59B3 /* FriendsTab.swift */; };
 		75A18B5A2A7DAC74007F59B3 /* MusicTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A18B592A7DAC74007F59B3 /* MusicTab.swift */; };
@@ -121,6 +122,7 @@
 				75A13D5F2A566A9200387E08 /* FirebaseStorage in Frameworks */,
 				A8EC1B032A58C46E00882E4A /* KeychainAccess in Frameworks */,
 				A8B818332A576B4F0003ECCF /* SpotifyAPI in Frameworks */,
+				75A161C42A8EE64A004E1D04 /* SlidingTabView in Frameworks */,
 				75A13D5B2A566A9200387E08 /* FirebaseFirestore in Frameworks */,
 				75A13D5D2A566A9200387E08 /* FirebaseFirestoreSwift in Frameworks */,
 			);
@@ -270,6 +272,7 @@
 				A8EC1B022A58C46E00882E4A /* KeychainAccess */,
 				7567D60E2A65FAE5002D93DF /* SDWebImageSwiftUI */,
 				7505DA7A2A732131008907CD /* MarqueeText */,
+				75A161C32A8EE64A004E1D04 /* SlidingTabView */,
 			);
 			productName = "Music App";
 			productReference = 75A13D3D2A54BE1900387E08 /* Music App.app */;
@@ -305,6 +308,7 @@
 				A8EC1B012A58C46E00882E4A /* XCRemoteSwiftPackageReference "KeychainAccess" */,
 				7567D60D2A65FAE5002D93DF /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
 				7505DA792A732131008907CD /* XCRemoteSwiftPackageReference "MarqueeText" */,
+				75A161C22A8EE64A004E1D04 /* XCRemoteSwiftPackageReference "SlidingTabView" */,
 			);
 			productRefGroup = 75A13D3E2A54BE1900387E08 /* Products */;
 			projectDirPath = "";
@@ -608,6 +612,14 @@
 				minimumVersion = 10.0.0;
 			};
 		};
+		75A161C22A8EE64A004E1D04 /* XCRemoteSwiftPackageReference "SlidingTabView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/QuynhNguyen/SlidingTabView.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		A8B818312A576B4F0003ECCF /* XCRemoteSwiftPackageReference "SpotifyAPI" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Peter-Schorn/SpotifyAPI";
@@ -656,6 +668,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 75A13D522A561C3700387E08 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseStorage;
+		};
+		75A161C32A8EE64A004E1D04 /* SlidingTabView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 75A161C22A8EE64A004E1D04 /* XCRemoteSwiftPackageReference "SlidingTabView" */;
+			productName = SlidingTabView;
 		};
 		A8B818322A576B4F0003ECCF /* SpotifyAPI */ = {
 			isa = XCSwiftPackageProductDependency;

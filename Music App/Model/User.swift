@@ -17,7 +17,7 @@ struct User: Identifiable, Codable {
     var userUID: String
     var userEmail:String
     var userProfileURL: URL
-    var currentlyPlaying: [PlaylistItem] = []
+    var currentlyPlaying: [current]
     
     enum CodingKeys: CodingKey {
         case id

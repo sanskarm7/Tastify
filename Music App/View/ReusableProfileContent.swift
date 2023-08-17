@@ -9,6 +9,7 @@ import SwiftUI
 import SDWebImageSwiftUI
 import SpotifyWebAPI
 import Combine
+//import SlidingTabView
 
 struct ReusableProfileContent: View {
     var user: User
@@ -75,7 +76,7 @@ struct ReusableProfileContent: View {
                 
                 //MARK: Currently Playing - only loads on reload
                 if self.currentlyPlaying != nil{
-                    CurrentSongView(currentlyPlaying: self.currentlyPlaying!, isPlaying: self.isPlaying!)
+                    CurrentSongView(currentlyPlaying: self.currentlyPlaying!, isPlaying: isPlaying!)
                 }
                     //MARK: Taste Meter
                     TasteMeter(value: score)
@@ -141,31 +142,39 @@ struct ReusableProfileContent: View {
 //                        .lineLimit(1)
 //                }
             }
-            
             .onAppear{
-                getCurrentTrack()
+                if !user.currentlyPlaying.isEmpty {
+                    print(user.currentlyPlaying[0].PlaylistItem.name)
+                    
+                    self.currentlyPlaying = user.currentlyPlaying[0].PlaylistItem
+                    self.isPlaying = user.currentlyPlaying[0].isPlaying
+                }
+                
+                          
+                          
             }
+            
         }
     }
     
-    func getCurrentTrack() {
-        
-        
-        trackCancellable = self.spotify.api.currentPlayback()
-            .receive(on: RunLoop.main)
-            .sink(
-                receiveCompletion: { completion in
-                    if case .failure(let error) = completion {
-                        print("Error: \(error)")
-                    }
-                },
-                receiveValue: { playbackContext in
-                    self.currentlyPlaying = playbackContext?.item
-                    isPlaying = playbackContext?.isPlaying
-                    
-                }
-            )
-    }
+//    func getCurrentTrack() {
+//        
+//        
+//        trackCancellable = self.spotify.api.currentPlayback()
+//            .receive(on: RunLoop.main)
+//            .sink(
+//                receiveCompletion: { completion in
+//                    if case .failure(let error) = completion {
+//                        print("Error: \(error)")
+//                    }
+//                },
+//                receiveValue: { playbackContext in
+//                    self.currentlyPlaying = playbackContext?.item
+//                    isPlaying = playbackContext?.isPlaying
+//                    
+//                }
+//            )
+//    }
     
 }
 

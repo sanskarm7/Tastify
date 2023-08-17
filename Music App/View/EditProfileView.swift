@@ -147,7 +147,7 @@ struct EditProfileView: View {
                     userRealName = currentUserRealName
                 }
                 //Creating a user firestore object - Remove [userBioLink: bioLink,]
-                let user = User(username: userName, userRealName: userRealName, userUID: userUID, userEmail: currentUserEmail, userProfileURL: downloadURL)
+                let user = User(username: userName, userRealName: userRealName, userUID: userUID, userEmail: currentUserEmail, userProfileURL: downloadURL, currentlyPlaying: [])
                 // Saving User Doc into Firestore database
                 
                 let _ = try Firestore.firestore().collection("Users").document(userUID).setData(from: user, completion:{
