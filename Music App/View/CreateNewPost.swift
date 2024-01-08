@@ -112,7 +112,8 @@ struct CreateNewPost: View {
                 let uiImage: UIImage = self.image.asUIImage()
                 postImageData = uiImage.pngData()
                 
-                backgroundColor = Color(uiImage.averageColor ?? .darkGray)
+                backgroundColor = getAverageColor(image: uiImage)
+                
                 let color = backgroundColor.description.dropFirst(25).components(separatedBy: " ").map {
                     CGFloat(($0 as NSString).doubleValue)
                 }
@@ -181,7 +182,45 @@ struct CreateNewPost: View {
         })
     }
     
+    func getAverageColor(image: UIImage) -> Color {
+        var backgroundColor: Color
+       //let image: Image = self.image // Create an Image anyhow you want
+       //let uiImage: UIImage = image.asUIImage() // Works Perfectly
+       
+        let uiColor = image.averageColor ?? .darkGray
+        
+        var h: CGFloat = 0
+        var s: CGFloat = 0
+        var b: CGFloat = 0
+        var a: CGFloat = 0
+        
+        uiColor.getHue(&h, saturation: &s, brightness: &b, alpha: &a)
+        
+        if b > 0.75{
+            //var surplus = (b - 0.5) / 2
+            backgroundColor = Color(uiColor.modified(withAdditionalHue: 0, additionalSaturation: 0, additionalBrightness: -0.5))
+        }
+        else if b > 0.5{
+            backgroundColor = Color(uiColor.modified(withAdditionalHue: 0, additionalSaturation: 0, additionalBrightness: -0.25))
+        }
+        else if b < 0.1{
+            backgroundColor = Color(uiColor.modified(withAdditionalHue: 0, additionalSaturation: 0, additionalBrightness: 0.2))
+        }
+        else{
+            backgroundColor = Color(uiColor)
+        }
+        
+        return backgroundColor
+        
+       
+   //    let uiColor = UIImage(named: images[currentIndex])?.averageColor ?? .clear
+      // backgroundColor = Color(uiColor)
+   }
+    
 }
+
+
+
 
 //struct CreateNewPost_Previews: PreviewProvider {
 //    static let tracks: [Track] = []

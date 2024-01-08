@@ -13,6 +13,7 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 import SpotifyWebAPI
 import Combine
+import MarqueeText
 
 
 struct PostCardView: View {
@@ -25,6 +26,8 @@ struct PostCardView: View {
     var post: Post
     var onUpdate: (Post)->()
     var onDelete: ()->()
+    
+    @State var color: UIColor = .darkGray
     
     
     @State private var myProfile: User?
@@ -67,6 +70,7 @@ struct PostCardView: View {
                                     Font.custom("Inter", size: 20
                                                ).weight(.semibold)
                                 )
+                                .foregroundColor(.white)
                             
                             Spacer()
                             
@@ -84,32 +88,43 @@ struct PostCardView: View {
                         }
                         .resizable()
                         .aspectRatio(contentMode: .fill)
-                        .frame(width: 214, height: 217)
+                        .frame(width: 215, height: 215)
                         .clipped()
                         .shadow(color: .black.opacity(0.5), radius: 15, x: 0, y: 0)
                         //                            .padding(.top)
                         .padding(.bottom)
                         
-                        Text(post.track.name)
-                            .font(
-                                Font.custom("Inter", size: 25)
-                                    .weight(.bold)
-                            )
-                            .padding(.leading)
-                            .padding(.trailing)
+                        MarqueeText(
+                            text: post.track.name,
+                             font: UIFont(name: "Inter-Bold", size: 25)!,
+                             leftFade: 3,
+                             rightFade: 3,
+                             startDelay: 3,
+                             alignment: .center
+                             )
+                        .foregroundColor(.white)
+                        .frame(maxWidth: 250)
                         
-                        Text(post.track.artists?.first?.name ?? "error fetching artist name")
-                            .padding(.bottom)
-                            .font(
-                                Font.custom("Inter", size: 20)
-                                    .weight(.light)
-                            )
                         
-                        Text("AnimBars")
-                            .font(
-                                Font.custom("Inter", size: 25)
-                                    .weight(.light)
-                            )
+                        MarqueeText(
+                            text: post.track.artists?.first?.name ?? "error fetching artist name",
+                             font: UIFont(name: "Inter-Light", size: 20)!,
+                             leftFade: 3,
+                             rightFade: 3,
+                             startDelay: 3,
+                             alignment: .center
+                             )
+                        .foregroundColor(.white)
+                        .frame(maxWidth: 250)
+                        .padding(.bottom)
+                        
+                        AudioVisualizer(isPlaying: true)
+                        
+//                        Text("AnimBars")
+//                            .font(
+//                                Font.custom("Inter", size: 25)
+//                                    .weight(.light)
+//                            )
                         
                     }
                     .hAlign(.center)
@@ -200,7 +215,8 @@ struct PostCardView: View {
         
         ZStack{
             RoundedRectangle(cornerRadius: 25, style: .continuous)
-                .fill(Color.secondary)
+            
+                .fill(Color(self.color))
             //              .foregroundColor(.clear)
                 .frame(width: 211, height: 60)
                 .offset(y: -60 / 2)
@@ -216,32 +232,35 @@ struct PostCardView: View {
                     HStack{
                         Button(action: likePost){
                             Image(systemName: post.likedIDs.contains(userUID) ? "flame.fill" : "flame")
+                                .foregroundColor(.white)
                         }
                         
                         Text("\(post.likedIDs.count)")
                             .font(.caption)
-                            .foregroundColor(.black)
+                            .foregroundColor(.white)
                     }
                     
                     HStack{
                         Button(action: neutralPost) {
                             
                             Image(systemName: post.neutralIDs.contains(userUID) ? "plusminus.circle.fill" : "plusminus.circle")
+                                .foregroundColor(.white)
                         }
                         
                         Text("\(post.neutralIDs.count)")
                             .font(.caption)
-                            .foregroundColor(.black)
+                            .foregroundColor(.white)
                     }
                     
                     HStack{
                         Button(action: dislikePost){
                             Image(systemName: post.dislikedIDs.contains(userUID) ? "hand.thumbsdown.fill" : "hand.thumbsdown")
+                                .foregroundColor(.white)
                         }
                         
                         Text("\(post.dislikedIDs.count)")
                             .font(.caption)
-                            .foregroundColor(.black)
+                            .foregroundColor(.white)
                     }
                     
                     
@@ -251,6 +270,10 @@ struct PostCardView: View {
                 .padding(.bottom,20)
             }
             
+        }
+        .onAppear{
+            color = UIColor(Color(cgColor: CGColor(colorSpace: CGColorSpace(name: CGColorSpace.sRGB)!, components: post.imageColor)!))
+            color = color.modified(withAdditionalHue: 0, additionalSaturation: 0, additionalBrightness: -0.05)
         }
         .frame(width: 211, height: 60)
         

@@ -143,13 +143,39 @@ struct CurrentSongView: View {
             )
     }
 
-     func setAverageColor() {
-        let image: Image = self.image // Create an Image anyhow you want
-        let uiImage: UIImage = image.asUIImage() // Works Perfectly
-
-         let uiColor = uiImage.averageColor ?? .darkGray
-        backgroundColor = Color(uiColor)
-    }
+    func setAverageColor() {
+       let image: Image = self.image // Create an Image anyhow you want
+       let uiImage: UIImage = image.asUIImage() // Works Perfectly
+       
+        let uiColor = uiImage.averageColor ?? .darkGray
+        
+        var h: CGFloat = 0
+        var s: CGFloat = 0
+        var b: CGFloat = 0
+        var a: CGFloat = 0
+        
+        uiColor.getHue(&h, saturation: &s, brightness: &b, alpha: &a)
+        
+        print(b)
+        
+        if b > 0.75{
+            //var surplus = (b - 0.5) / 2
+            backgroundColor = Color(uiColor.modified(withAdditionalHue: 0, additionalSaturation: 0, additionalBrightness: -0.5))
+        }
+        else if b > 0.5{
+            backgroundColor = Color(uiColor.modified(withAdditionalHue: 0, additionalSaturation: 0, additionalBrightness: -0.25))
+        }
+        else if b < 0.1{
+            backgroundColor = Color(uiColor.modified(withAdditionalHue: 0, additionalSaturation: 0, additionalBrightness: 0.2))
+        }
+        else{
+            backgroundColor = Color(uiColor)
+        }
+        
+       
+   //    let uiColor = UIImage(named: images[currentIndex])?.averageColor ?? .clear
+      // backgroundColor = Color(uiColor)
+   }
  }
 
 

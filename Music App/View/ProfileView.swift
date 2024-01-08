@@ -30,6 +30,7 @@ struct ProfileView: View {
     
 
     var body: some View {
+        
         NavigationStack{
             ZStack{
                 Color(red: 0.03, green: 0, blue: 0.09).edgesIgnoringSafeArea(.all)
@@ -62,11 +63,15 @@ struct ProfileView: View {
                                 Image("Settings")
                                     .font(.headline)
                             }
-                    }
+                        }
+                        
                 }
+                    .toolbarBackground(Color(red: 0.03, green: 0, blue: 0.09), for: .navigationBar)
             }
             
         }
+        
+        
 
         .overlay{
                 LoadingView(show: $isLoading)

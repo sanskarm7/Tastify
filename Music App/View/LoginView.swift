@@ -288,6 +288,7 @@ struct RegisterView: View {
                 //Creating a user firestore object - removed [userBioLink: bioLink,]
                 let user = User(username: userName.lowercased(), userRealName: userRealName, userUID: userUID, userEmail: emailID, userProfileURL: downloadURL, currentlyPlaying: [])
                 // Saving User Doc into Firestore database
+                let friends = Friends(outgoingRequests: [], incomingRequests: [], friends: [])
                 
                 let _ = try Firestore.firestore().collection("Users").document(userUID).setData(from: user, completion:{
                     error in
@@ -298,8 +299,18 @@ struct RegisterView: View {
                         self.userUID = userUID
                         profileURL = downloadURL
                         logStatus = true
+                        Globals.currentUser = user
                     }
                 })
+                
+                let _ = try Firestore.firestore().collection("Friends").document(userUID).setData(from: friends, completion:{
+                    error in
+                    if error == nil{
+                        //MARK: Print Saved Successfully
+                        print("Friends Saved Successfully")
+                    }
+                })
+                
                 
             }catch{
                 //MARK: Deleting Created Account In Case of Failure

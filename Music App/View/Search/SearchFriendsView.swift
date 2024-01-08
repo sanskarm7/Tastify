@@ -31,7 +31,7 @@ struct SearchFriendsView: View {
     var body: some View {
         NavigationView {
             ZStack{
-    //            Color(red: 0.03, green: 0, blue: 0.09).edgesIgnoringSafeArea(.all)
+                Color(red: 0.03, green: 0, blue: 0.09).edgesIgnoringSafeArea(.all) //BACKGROUND
 
                 VStack {
                     searchBar
@@ -64,7 +64,8 @@ struct SearchFriendsView: View {
                                     ZStack{
                                         Color(red: 0.03, green: 0, blue: 0.09).edgesIgnoringSafeArea(.all)
                                         
-                                        ReusableProfileContent(user: user)
+                                        ReusableFriend(friend: user)
+                                       // ReusableProfileContent(user: user)
                                     }
                                 } label: {
                                     Text(user.username)

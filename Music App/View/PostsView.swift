@@ -12,10 +12,12 @@ struct PostsView: View {
     @State private var recentsPosts: [Post] = []
     
     var body: some View {
-        NavigationStack{
-            ReusablePostsView(posts: $recentsPosts)
-                .navigationTitle("Posts")
-        }
+            ZStack{
+                Color(red: 0.03, green: 0, blue: 0.09).edgesIgnoringSafeArea(.all)
+                ReusablePostsView(posts: $recentsPosts)
+                    
+            }
+    
     }
 }
 

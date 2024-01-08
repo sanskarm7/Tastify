@@ -13,7 +13,7 @@ struct SearchView: View {
     
     var body: some View {
         ZStack{
-            
+            Color(red: 0.03, green: 0, blue: 0.09).edgesIgnoringSafeArea(.all) //BACKGROUND
             if(isShowingSearchSongView){
                 SearchSongView()
             }

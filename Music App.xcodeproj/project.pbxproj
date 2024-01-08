@@ -38,9 +38,13 @@
 		75A13D612A566DE800387E08 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A13D602A566DE800387E08 /* User.swift */; };
 		75A13D632A573C5200387E08 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A13D622A573C5200387E08 /* LoadingView.swift */; };
 		75A161C42A8EE64A004E1D04 /* SlidingTabView in Frameworks */ = {isa = PBXBuildFile; productRef = 75A161C32A8EE64A004E1D04 /* SlidingTabView */; };
+		75A161C62A96C32B004E1D04 /* ReusableProfilePosts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A161C52A96C32B004E1D04 /* ReusableProfilePosts.swift */; };
+		75A161C82AA3C47D004E1D04 /* Friends.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A161C72AA3C47D004E1D04 /* Friends.swift */; };
 		75A18B562A7C566B007F59B3 /* TasteMeter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A18B552A7C566B007F59B3 /* TasteMeter.swift */; };
 		75A18B582A7DAC5D007F59B3 /* FriendsTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A18B572A7DAC5D007F59B3 /* FriendsTab.swift */; };
 		75A18B5A2A7DAC74007F59B3 /* MusicTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A18B592A7DAC74007F59B3 /* MusicTab.swift */; };
+		75C3F9592AB3CB3100F52F10 /* ReusableFriend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75C3F9582AB3CB3100F52F10 /* ReusableFriend.swift */; };
+		75C3F95B2AB3D20B00F52F10 /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75C3F95A2AB3D20B00F52F10 /* Globals.swift */; };
 		75FA11442A6C4DC6002D7649 /* AudioVisualizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75FA11432A6C4DC6002D7649 /* AudioVisualizer.swift */; };
 		75FA11462A6C4EC0002D7649 /* PostsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75FA11452A6C4EC0002D7649 /* PostsView.swift */; };
 		A81A4D6D2A688637002A2A50 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81A4D6C2A688637002A2A50 /* HomeView.swift */; };
@@ -88,9 +92,13 @@
 		75A13D572A561D0100387E08 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		75A13D602A566DE800387E08 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		75A13D622A573C5200387E08 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		75A161C52A96C32B004E1D04 /* ReusableProfilePosts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableProfilePosts.swift; sourceTree = "<group>"; };
+		75A161C72AA3C47D004E1D04 /* Friends.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friends.swift; sourceTree = "<group>"; };
 		75A18B552A7C566B007F59B3 /* TasteMeter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasteMeter.swift; sourceTree = "<group>"; };
 		75A18B572A7DAC5D007F59B3 /* FriendsTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsTab.swift; sourceTree = "<group>"; };
 		75A18B592A7DAC74007F59B3 /* MusicTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicTab.swift; sourceTree = "<group>"; };
+		75C3F9582AB3CB3100F52F10 /* ReusableFriend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableFriend.swift; sourceTree = "<group>"; };
+		75C3F95A2AB3D20B00F52F10 /* Globals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
 		75FA11432A6C4DC6002D7649 /* AudioVisualizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioVisualizer.swift; sourceTree = "<group>"; };
 		75FA11452A6C4EC0002D7649 /* PostsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsView.swift; sourceTree = "<group>"; };
 		A81A4D6C2A688637002A2A50 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -206,10 +214,13 @@
 				75FA11452A6C4EC0002D7649 /* PostsView.swift */,
 				7505DA772A6C629A008907CD /* CurrentSongView.swift */,
 				A8FC52962A7483B400431D65 /* ReusablepostsView.swift */,
+				75C3F95A2AB3D20B00F52F10 /* Globals.swift */,
 				A8FC52982A7483EE00431D65 /* PostCardView.swift */,
 				75A18B552A7C566B007F59B3 /* TasteMeter.swift */,
 				75A18B572A7DAC5D007F59B3 /* FriendsTab.swift */,
 				75A18B592A7DAC74007F59B3 /* MusicTab.swift */,
+				75A161C52A96C32B004E1D04 /* ReusableProfilePosts.swift */,
+				75C3F9582AB3CB3100F52F10 /* ReusableFriend.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -225,6 +236,7 @@
 				A8C339F12A661D0C0084FE05 /* SpotifyAPIExtensions.swift */,
 				A83F190A2A66245F00415687 /* AlertItem.swift */,
 				A8AB59242A6B358E00E940A9 /* Post.swift */,
+				75A161C72AA3C47D004E1D04 /* Friends.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -353,7 +365,10 @@
 				75A13D582A561D0100387E08 /* LoginView.swift in Sources */,
 				A8E348FF2A61939600F7EDE4 /* TestView.swift in Sources */,
 				A8B818352A5775DC0003ECCF /* SpotifyAuthentication.swift in Sources */,
+				75A161C62A96C32B004E1D04 /* ReusableProfilePosts.swift in Sources */,
+				75C3F95B2AB3D20B00F52F10 /* Globals.swift in Sources */,
 				7567D6152A674CD7002D93DF /* ReusableProfileContent.swift in Sources */,
+				75A161C82AA3C47D004E1D04 /* Friends.swift in Sources */,
 				75A13D432A54BE1900387E08 /* ContentView.swift in Sources */,
 				7505DA782A6C629A008907CD /* CurrentSongView.swift in Sources */,
 				A8C339F22A661D0C0084FE05 /* SpotifyAPIExtensions.swift in Sources */,
@@ -368,6 +383,7 @@
 				75A18B5A2A7DAC74007F59B3 /* MusicTab.swift in Sources */,
 				75FA11442A6C4DC6002D7649 /* AudioVisualizer.swift in Sources */,
 				7567D6132A66028A002D93DF /* SearchSongView.swift in Sources */,
+				75C3F9592AB3CB3100F52F10 /* ReusableFriend.swift in Sources */,
 				A83F190B2A66245F00415687 /* AlertItem.swift in Sources */,
 				75A18B562A7C566B007F59B3 /* TasteMeter.swift in Sources */,
 				A877F31C2A7C6A3A003AA38E /* SearchFriendsView.swift in Sources */,

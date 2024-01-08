@@ -37,11 +37,12 @@ struct RootView: View {
                             .tag(2)
                         ProfileView()
                             .tabItem {
-                                Label("Saved", systemImage: "arrow.triangle.2.circlepath.circle")
+                                Label("Profile", systemImage: "arrow.triangle.2.circlepath.circle")
                             }
                             .tag(3)
+                            .toolbarBackground(Color(red: 0.03, green: 0, blue: 0.09), for: .tabBar)
                     }
-                    .accentColor(Color.purple)
+                    .accentColor(Color(red: 0.16, green: 0.04, blue: 0.49))
                     .onOpenURL(perform: handleURL(_:))
                     .onAppear{
                         if spotify.isAuthorized == false{

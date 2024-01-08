@@ -26,7 +26,7 @@ struct SearchSongView: View {
     
     var body: some View {
         ZStack{
-//            Color(red: 0.03, green: 0, blue: 0.09).edgesIgnoringSafeArea(.all)
+           Color(red: 0.03, green: 0, blue: 0.09).edgesIgnoringSafeArea(.all)
 
             VStack {
                 searchBar
@@ -34,8 +34,9 @@ struct SearchSongView: View {
     //            Text("Tap on a track to play it.")
     //                .font(.caption)
     //                .foregroundColor(.secondary)
-                Spacer()
+                
                 if tracks.isEmpty {
+                    Spacer()
                     if isSearching {
                         HStack {
                             ProgressView()
@@ -57,9 +58,14 @@ struct SearchSongView: View {
                         ForEach(tracks, id: \.self) { track in
                             SongView(track: track)
                                 .listRowSeparator(.hidden)
+                                .listRowBackground(Color(red: 0.03, green: 0, blue: 0.09))
+                            
                         }
                     }
-                    .listStyle(.plain)
+                    //.listStyle(.plain)
+                    //.listRowBackground(Color(red: 0.03, green: 0, blue: 0.09))
+                    .scrollContentBackground(.hidden)
+                    .background(Color(red: 0.03, green: 0, blue: 0.09))
                 }
                 Spacer()
             }

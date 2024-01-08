@@ -22,6 +22,7 @@ struct ReusableProfileContent: View {
     @State var track: Track? = nil
     @State var isPlaying: Bool? = false
     
+
     @State var score: CGFloat = 77
     @State var friends: Int = 0
     
@@ -29,6 +30,12 @@ struct ReusableProfileContent: View {
     
     @State var selectedMusic: Bool = true
 
+    @State private var tabIndex = 0
+    
+    let RED: Color = Color(red: 0.9, green: 0.21, blue: 0.21)
+    let ORANGE: Color = Color(red: 0.89, green: 0.41, blue: 0.2)
+    let YELLOW: Color = Color(red: 0.88, green: 0.89, blue: 0.2)
+    let GREEN: Color = Color(red: 0, green: 0.9, blue: 0.14)
     
     var body: some View{
         ScrollView(.vertical, showsIndicators: false) {
@@ -81,51 +88,74 @@ struct ReusableProfileContent: View {
                     //MARK: Taste Meter
                     TasteMeter(value: score)
         
+               
+                
+                
+                
                 HStack{
                     Spacer()
-                    
-                    
+
+
                     Button {
                         selectedMusic = true
                     } label: {
                         Image("MusicTab")
                         .frame(width: 32, height: 32)
+                        .foregroundColor(!selectedMusic ? Color(red: 0.6, green: 0.6, blue: 0.6): Color.white)
+                      
                     }
-
                     
+
                     Spacer()
                     Spacer()
                     Button {
                         selectedMusic = false
+                        
                     } label: {
                         Image("FriendsTab")
                         .frame(width: 40, height: 32)
+                        .foregroundColor(!selectedMusic ? Color.white : Color(red: 0.6, green: 0.6, blue: 0.6))
+                  
+                        
                     }
+
+                    
                     Spacer()
+                    
                 }
                 
                 ZStack{
-                    
+
                     //MARK: Separator
                     Rectangle()
                     .foregroundColor(.clear)
                     .frame(width: 390, height: 1)
-                    .background(Color(red: 0.85, green: 0.85, blue: 0.85))
-                    
+                    .background(Color(red: 0.6, green: 0.6, blue: 0.6))
+
                     HStack{
-                        
+
                         if selectedMusic == false{
-                            
+                            Spacer()
                         }
                         //MARK: Selected Tab
                         Rectangle()
                         .foregroundColor(.clear)
                         .frame(width: 195, height: 3)
-                        .background(Color(red: 0.85, green: 0.85, blue: 0.85))
+                        .background(Color.white)
+
+                        if selectedMusic == true{
+                            Spacer()
+                        }
                         
-                        Spacer()
                     }
-                   
+
+                }
+                
+                if selectedMusic{
+                    MusicTab(user: self.user)
+                }
+                else{
+                    FriendsTab()
                 }
                 
                 
@@ -157,24 +187,27 @@ struct ReusableProfileContent: View {
         }
     }
     
-//    func getCurrentTrack() {
-//        
-//        
-//        trackCancellable = self.spotify.api.currentPlayback()
-//            .receive(on: RunLoop.main)
-//            .sink(
-//                receiveCompletion: { completion in
-//                    if case .failure(let error) = completion {
-//                        print("Error: \(error)")
-//                    }
-//                },
-//                receiveValue: { playbackContext in
-//                    self.currentlyPlaying = playbackContext?.item
-//                    isPlaying = playbackContext?.isPlaying
-//                    
-//                }
-//            )
-//    }
+    func colorPicker() -> Color{
+        
+        //var diff = 0
+        
+        if self.score > 74{
+            return GREEN
+        }
+        else if self.score > 49{
+            return YELLOW
+        }
+        else if self.score > 24{
+            return ORANGE
+        }
+        else{
+            return RED
+        }
+        
+    }
     
 }
+
+
+
 

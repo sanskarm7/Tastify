@@ -29,44 +29,89 @@ struct SongView: View {
     
     var body: some View {
         HStack{
-            Button(action: playTrack) {
+//            Button(action: playTrack) {
                 
-                HStack{
+                ZStack{
+                    Rectangle()
+                        .foregroundColor(.clear)
+                        .frame(width: 360, height: 60)
+                        .background(backgroundColor)
+                        .cornerRadius(20)
                     
-                    image
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 40, height: 40)
-                        
-                    
-                    VStack(alignment: .leading){
-                        Text(track.name.count >= 25 ? String(track.name.prefix(25) + "...") : track.name)
-                            .font(
-                                Font.custom("Inter", size: 18).weight(.semibold)
-                            )
-                            
-                        if let artistName = track.artists?.first?.name {
-                            Text(artistName)
-                                .font(
-                                    Font.custom("Inter", size: 18).weight(.light)
-                                    )
+                    HStack(spacing: 0){
+                        Button {
+                            playTrack()
+                        } label: {
+                            Rectangle()
+                                .foregroundColor(.clear)
+                                .frame(width: 300, height: 60)
+                                .background(.clear)
+                                .cornerRadius(20, corners: [.topLeft, .bottomLeft])
                         }
+                        .padding(.leading)
+                        
+                        Button {
+                            showingCreatePostView.toggle()
+                        } label: {
+                            Rectangle()
+                                .foregroundColor(.clear)
+                                .frame(width: 60, height: 60)
+                                .background(.clear)
+                                .cornerRadius(20, corners: [.bottomRight, .topRight])
+                        }
+                        .padding(.trailing)
+
                     }
-                    Spacer()
+                    .frame(width: 360, height: 60)
                     
-                }
+                    
+                    HStack{
+                        
+                        image
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 40, height: 40)
+                            .padding(.leading)
+                            
+                        
+                        VStack(alignment: .leading){
+                            Text(track.name.count >= 25 ? String(track.name.prefix(25) + "...") : track.name)
+                                .font(
+                                    Font.custom("Inter", size: 18).weight(.semibold)
+                                )
+                                .foregroundColor(.white)
+                                
+                            if let artistName = track.artists?.first?.name {
+                                Text(artistName)
+                                    .font(
+                                        Font.custom("Inter", size: 18).weight(.light)
+                                        )
+                                    .foregroundColor(.white)
+                            }
+                        }
+                        Spacer()
+                        Button{
+                            showingCreatePostView.toggle()
+                        } label: {
+                            Image(systemName: "plus.circle")
+                                .foregroundColor(.white)
+                        }
+                        .padding(.trailing)
+                        
+                        
+                    }
+                    .frame(width: 360, height: 60)
+               // }
                 
+                
+            
             }
             .onAppear{
                 loadImage()
             }
             .buttonStyle(.plain)
             
-            Button{
-                showingCreatePostView.toggle()
-            } label: {
-                Image(systemName: "plus.circle")
-            }
+            
         }
         .sheet(isPresented: $showingCreatePostView) {
             CreateNewPost(track: track) {_ in
@@ -76,7 +121,8 @@ struct SongView: View {
         .alert(item: $alert) { alert in
             Alert(title: alert.title, message: alert.message)
         }
-        .background(backgroundColor)
+        //.background(backgroundColor)
+        //.frame(width: 360, height: 60)
     }
     
     func playTrack() {
@@ -146,9 +192,33 @@ struct SongView: View {
         let uiImage: UIImage = image.asUIImage() // Works Perfectly
         
          let uiColor = uiImage.averageColor ?? .darkGray
+         
+         var h: CGFloat = 0
+         var s: CGFloat = 0
+         var b: CGFloat = 0
+         var a: CGFloat = 0
+         
+         uiColor.getHue(&h, saturation: &s, brightness: &b, alpha: &a)
+         
+         print(b)
+         
+         if b > 0.75{
+             //var surplus = (b - 0.5) / 2
+             backgroundColor = Color(uiColor.modified(withAdditionalHue: 0, additionalSaturation: 0, additionalBrightness: -0.5))
+         }
+         else if b > 0.5{
+             backgroundColor = Color(uiColor.modified(withAdditionalHue: 0, additionalSaturation: 0, additionalBrightness: -0.25))
+         }
+         else if b < 0.1{
+             backgroundColor = Color(uiColor.modified(withAdditionalHue: 0, additionalSaturation: 0, additionalBrightness: 0.2))
+         }
+         else{
+             backgroundColor = Color(uiColor)
+         }
+         
         
     //    let uiColor = UIImage(named: images[currentIndex])?.averageColor ?? .clear
-        backgroundColor = Color(uiColor)
+       // backgroundColor = Color(uiColor)
     }
 }
 
@@ -177,6 +247,26 @@ extension View {
     }
 }
 
+extension UIColor {
+
+    func modified(withAdditionalHue hue: CGFloat, additionalSaturation: CGFloat, additionalBrightness: CGFloat) -> UIColor {
+
+        var currentHue: CGFloat = 0.0
+        var currentSaturation: CGFloat = 0.0
+        var currentBrigthness: CGFloat = 0.0
+        var currentAlpha: CGFloat = 0.0
+
+        if self.getHue(&currentHue, saturation: &currentSaturation, brightness: &currentBrigthness, alpha: &currentAlpha){
+            return UIColor(hue: currentHue + hue,
+                           saturation: currentSaturation + additionalSaturation,
+                           brightness: currentBrigthness + additionalBrightness,
+                           alpha: currentAlpha)
+        } else {
+            return self
+        }
+    }
+}
+
 extension UIView {
 // This is the function to convert UIView to UIImage
     public func asUIImage() -> UIImage {
@@ -186,6 +276,7 @@ extension UIView {
         }
     }
 }
+
 
 
 extension UIImage {
@@ -236,4 +327,6 @@ struct SongView_Previews: PreviewProvider {
         .environmentObject(Spotify())
     }
 }
+
+
 
